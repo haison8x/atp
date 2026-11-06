@@ -7,7 +7,7 @@ Tài liệu thảo luận: 159 khó khăn khi đóng gói một hệ thống ERP
 | | HTML | Markdown |
 | --- | --- | --- |
 | Slide bản vừa — 40 trang | [slides/ban-vua-40-trang.html](slides/ban-vua-40-trang.html) | [slides/ban-vua-40-trang.md](slides/ban-vua-40-trang.md) |
-| Slide bản đầy đủ — 76 trang | [slides/ban-day-du.html](slides/ban-day-du.html) | [slides/ban-day-du.md](slides/ban-day-du.md) |
+| Slide bản đầy đủ — 77 trang | [slides/ban-day-du.html](slides/ban-day-du.html) | [slides/ban-day-du.md](slides/ban-day-du.md) |
 | Tài liệu đầy đủ (159 khó khăn, 17 phần) | [tai-lieu/ban-erp-cho-khach-hang.html](tai-lieu/ban-erp-cho-khach-hang.html) | [tai-lieu/ban-erp-cho-khach-hang.md](tai-lieu/ban-erp-cho-khach-hang.md) |
 
 Trang chính khi bật GitHub Pages: `index.html`.

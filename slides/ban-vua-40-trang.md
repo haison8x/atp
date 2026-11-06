@@ -14,29 +14,7 @@ Những khó khăn kỹ thuật, quy trình, vận hành, pháp lý — mỗi ý
 
 ---
 
-## 2. Câu hỏi hôm nay là "làm thế nào", không phải "có nên"
-
-_Mở đầu_
-
-> Mục tiêu chung: **xây được một sản phẩm đáp ứng nhu cầu của nhiều khách hàng**. Tài liệu này liệt kê những gì phải giải để đạt mục tiêu đó.
-
-**Mỗi khó khăn có mã K-xx**
-
-Tra ngược được về tài liệu đầy đủ (159 mục, 17 phần).
-
-**Mỗi khó khăn có 📊 số liệu**
-
-Đo trên chính hệ thống đang chạy, hoặc từ nguồn công khai có dẫn link.
-
-**Xếp theo mức quan trọng**
-
-Phần 1–8 là trọng tâm; Phần 9–17 ít cấp bách hơn nhưng vẫn phải giải.
-
-> 🗣 **Lời trình bày:** Nhấn mạnh rằng đây không phải tài liệu phản đối ý tưởng. Hệ thống hiện tại chạy tốt cho một công ty; câu hỏi là cần thêm gì để chạy tốt cho nhiều công ty khác nhau.
-
----
-
-## 3. Mô hình đang được đề xuất (gọi là phương án S)
+## 2. Mô hình đang được đề xuất (gọi là phương án S)
 
 _Mở đầu · mô hình đang đề xuất_
 
@@ -49,6 +27,22 @@ _Mở đầu · mô hình đang đề xuất_
 - Không giao mã nguồn; **mã được làm rối** trước khi giao.
 
 > 🗣 **Lời trình bày:** Đọc lại đúng mô hình để mọi người cùng hiểu một thứ. Cuối bộ slide sẽ đặt mô hình này cạnh ba con đường mà ngành phần mềm doanh nghiệp đã đi.
+
+---
+
+## 3. Từ "tự xây nhà cho mình" sang "mở công ty xây nhà"
+
+_Mở đầu · một hình ảnh_
+
+**Hôm nay: căn nhà tự xây cho gia đình mình**
+
+Xây nhanh, sửa lúc nào cũng được. Ở trong nhà nên biết chỗ nào dột. Đập đi xây lại cũng không sao.
+
+**Khi bán: công ty xây nhà cho người khác**
+
+Chủ nhà đang ở bên trong khi mình sửa. Có bản vẽ ký trước, có nghiệm thu, có bảo hành. Một lỗi thiết kế phải sửa ở **mọi** căn đã xây.
+
+> 🗣 **Lời trình bày:** Hình ảnh này giúp người không làm kỹ thuật thấy ngay khác biệt: cùng một kỹ năng xây nhà, nhưng làm cho mình và làm cho khách là hai nghề khác nhau.
 
 ---
 
@@ -68,23 +62,25 @@ _Mở đầu_
 
 ---
 
-## 5. Hai khách dùng cùng chức năng — khách B chỉ muốn thêm một ô
+## 5. Mỗi khách cần trường riêng — hệ thống phải hỗ trợ trường dữ liệu động
 
-_Phần 4 · Ví dụ thứ nhất_
+_Phần 4 · Yêu cầu thứ nhất: trường dữ liệu động_
 
-> Ở mọi module, danh sách trường **viết cứng cho mọi công ty**. Thêm một ô cho khách B là sửa mã và sửa DB — và khách A cũng nhận ô đó (K-50).
+> Ví dụ: hai khách dùng cùng chức năng, khách B muốn thêm một ô. Hệ thống cần cho B **tự khai thêm ô bằng cấu hình**, không sửa mã, khách A không bị ảnh hưởng. Hiện nay danh sách trường **viết cứng trong mã, giống nhau cho mọi công ty** ⇒ thêm ô cho B là sửa mã, sửa DB, và A cũng nhận ô đó (K-50).
 
+- **0** — bảng khai báo trường theo công ty, trong toàn bộ 104 bảng
 - **66** — bảng từ điển khai cột cứng trong mã
 - **~243** — chỗ đọc ô theo vị trí cột — khách bỏ hay đổi thứ tự một cột là gãy
-- **0** — bảng khai báo trường theo công ty, trong toàn bộ 104 bảng
 
-> 🗣 **Lời trình bày:** Ngay phần trông "cấu hình được" nhất là các bảng từ điển — dữ liệu lưu dạng JSON theo công ty — thì danh sách cột vẫn khai trong mã, và nghiệp vụ đọc ô theo "cột thứ mấy".
+> Trường động nghĩa là: khai trường theo từng khách → biểu mẫu và kiểm tra dữ liệu tự sinh → trường hiện ở danh sách, tìm kiếm, báo cáo, xuất Excel → **nâng cấp phiên bản không làm mất trường riêng của khách**.
+
+> 🗣 **Lời trình bày:** Ngay phần trông "cấu hình được" nhất là các bảng từ điển — dữ liệu lưu dạng JSON theo công ty — thì danh sách cột vẫn khai trong mã, và nghiệp vụ đọc ô theo "cột thứ mấy". Đây là yêu cầu nền tảng thứ nhất; muốn có nó phải thiết kế lại cách lưu và cách đọc dữ liệu của mọi module.
 
 ---
 
-## 6. Quy trình y hệt nhau — công ty X chỉ thêm một bước duyệt
+## 6. Công ty X chỉ thêm một bước duyệt — cần thiết kế DB và kiến trúc mã cho quy trình động
 
-_Phần 4 · Ví dụ thứ hai_
+_Phần 4 · Yêu cầu thứ hai: quy trình động_
 
 | Module | Các bước (cố định trong DB) | Ai duyệt (viết cứng trong mã) |
 | --- | --- | --- |
@@ -95,11 +91,15 @@ _Phần 4 · Ví dụ thứ hai_
 | Từ điển (66 bảng) | Khoá → Đang sửa → Chờ duyệt → Trả về | Chuỗi duyệt tính trong mã |
 | Kế hoạch năm · tháng | Nháp → Gửi → Xác nhận / Trả về | Theo cây tổ chức, chuỗi vị trí |
 
-- **38** — luồng trạng thái cố định trong cấu trúc DB
-- **8+** — hàm tính chuỗi duyệt riêng, mỗi module một kiểu
-- **0** — chỗ khai báo quy trình theo công ty
+**Thiết kế DB cần có**
 
-> 🗣 **Lời trình bày:** Thêm một bước cho công ty X là chuyển đổi DB cho mọi khách, cộng rẽ nhánh theo tên khách trong mã, sửa màn, nhãn, thông báo, hạn xử lý (K-51).
+Bảng **định nghĩa quy trình** theo công ty và loại hồ sơ: các bước, ai duyệt, điều kiện (ví dụ "trên 3 ngày"). Hồ sơ lưu **phiên bản quy trình + bước đang ở**. Hiện: **38** luồng trạng thái cố định, **0** chỗ khai quy trình theo công ty.
+
+**Kiến trúc mã cần có**
+
+**Một bộ máy duyệt chung** đọc định nghĩa đó; màn, nhãn, thông báo, hạn xử lý đều lấy từ định nghĩa. Hiện: **8+** hàm tính chuỗi duyệt riêng, mỗi module một kiểu.
+
+> 🗣 **Lời trình bày:** Với thiết kế hiện tại, thêm một bước cho công ty X là chuyển đổi DB cho mọi khách, cộng rẽ nhánh theo tên khách trong mã, sửa màn, nhãn, thông báo, hạn xử lý (K-51). Hồ sơ đang dở khi quy trình đổi phải chạy tiếp theo quy trình cũ — vì thế hồ sơ phải nhớ phiên bản quy trình.
 
 ---
 
@@ -121,23 +121,7 @@ _Phần 4 · Ví dụ thứ ba_
 
 ---
 
-## 8. Danh mục cố định cũng vậy — và một chỗ đã đi đúng hướng
-
-_Phần 4 · Danh mục cố định_
-
-**Danh mục nằm trong cấu trúc DB**
-
-Loại nghỉ phép chỉ có đúng **4** loại: phép năm, ốm, không lương, việc riêng. Công ty muốn thêm "nghỉ thai sản" hay "nghỉ cưới" là **một lần chuyển đổi DB cho mọi khách** (K-53). Tổng cộng **59** danh sách giá trị cố định.
-
-**Điểm sáng: nghỉ phép lưu "bước n trên N"**
-
-Đúng cách ở tầng dữ liệu — thêm bước không cần đổi cấu trúc. Nhưng **luật** số cấp duyệt (≤ 3 ngày thì 1 cấp) vẫn viết cứng, giống nhau cho mọi công ty. Chỉ **1/9** module làm được như vậy (K-54).
-
-> 🗣 **Lời trình bày:** Điểm sáng này đáng giữ: nó cho thấy cách làm đúng đã có mầm trong hệ thống, chỉ chưa thành nền tảng chung.
-
----
-
-## 9. Ba tính năng nền tảng phải xây, rồi chuyển từng module sang
+## 8. Ba tính năng nền tảng phải xây, rồi chuyển từng module sang
 
 _Phần 4 · Phải xây gì_
 
@@ -155,11 +139,11 @@ Số cấp, tên cấp, đơn vị cha – con tuỳ khách; cấp trên, phạm
 
 > 📊 **25** nhóm tính năng · **38** luồng trạng thái · **8+** cách tính chuỗi duyệt gom về một bộ máy · **~243** chỗ đọc theo vị trí cột · **5** vai và **2** tầng đơn vị cố định phải thành cây do khách khai (K-55).
 
-> 🗣 **Lời trình bày:** Đây không phải chỉnh vài form, mà là làm lại tầng dưới của mọi module. Nhưng đây cũng chính là thứ biến hệ thống từ "phần mềm của một công ty" thành "sản phẩm cho nhiều công ty".
+> 🗣 **Lời trình bày:** Đây không phải chỉnh vài form, mà là làm lại tầng dưới của mọi module. Nhưng đây cũng chính là thứ biến hệ thống từ "phần mềm của một công ty" thành "sản phẩm cho nhiều công ty". Danh mục (loại nghỉ phép, loại hồ sơ…) đã có hướng làm động theo từ điển — lưu ý giá trị nào kéo theo luật riêng (nghỉ ốm → bảo hiểm, tính lương) thì luật đó cũng phải khai được, không chỉ thêm tên.
 
 ---
 
-## 10. Hệ thống gắn cứng với một công ty ở hàng trăm chỗ
+## 9. Hệ thống gắn cứng với một công ty ở hàng trăm chỗ
 
 _Phần 4 · Gắn cứng với một công ty_
 
@@ -176,7 +160,7 @@ _Phần 4 · Gắn cứng với một công ty_
 
 ---
 
-## 11. Khách nghe "ERP" sẽ so với Odoo, SAP, MISA
+## 10. Khách nghe "ERP" sẽ so với Odoo, SAP, MISA
 
 _Phần 4 · Phạm vi còn phải xây_
 
@@ -195,7 +179,7 @@ _Phần 4 · Phạm vi còn phải xây_
 
 ---
 
-## 12. Nâng cấp hỏng thì không có nút "quay lại"
+## 11. Nâng cấp hỏng thì không có nút "quay lại"
 
 _Phần 1 · Dữ liệu của khách_
 
@@ -211,7 +195,7 @@ _Phần 1 · Dữ liệu của khách_
 
 ---
 
-## 13. Mình chịu trách nhiệm cấu trúc, nhưng không giữ chìa khoá
+## 12. Mình chịu trách nhiệm cấu trúc, nhưng không giữ chìa khoá
 
 _Phần 1 · Khách có toàn quyền trên DB_
 
@@ -231,7 +215,7 @@ Phần lớn công ty vừa và nhỏ không có người quản trị DB. Để
 
 ---
 
-## 14. Lỗ hổng bảo mật không chờ khách sẵn sàng
+## 13. Lỗ hổng bảo mật không chờ khách sẵn sàng
 
 _Phần 2 · "Như Windows"_
 
@@ -248,7 +232,7 @@ _Phần 2 · "Như Windows"_
 
 ---
 
-## 15. Nền tảng bên dưới tự hết hạn, dù khách không đụng gì
+## 14. Nền tảng bên dưới tự hết hạn, dù khách không đụng gì
 
 _Phần 2 · Nền tảng tự hết hạn_
 
@@ -265,7 +249,7 @@ _Phần 2 · Nền tảng tự hết hạn_
 
 ---
 
-## 16. Giữa "khách gửi" và "triển khai" có ít nhất 12 bước
+## 15. Giữa "khách gửi" và "triển khai" có ít nhất 12 bước
 
 _Phần 3 · Quy trình_
 
@@ -288,25 +272,26 @@ _Phần 3 · Quy trình_
 
 ---
 
-## 17. Ai kiểm thử, ai nghiệm thu — theo tiêu chí nào?
+## 16. Kiểm thử và nghiệm thu là hai việc khác nhau — cả hai đang thiếu
 
 _Phần 3 · Ai kiểm thử, ai nghiệm thu?_
 
-**Kiểm thử**
+| | Kiểm thử | Nghiệm thu |
+| --- | --- | --- |
+| Là gì | **Bên mình tự kiểm** trước khi giao | **Khách kiểm** rồi ký xác nhận |
+| Trả lời câu hỏi | Chạy đúng như đã thống nhất chưa? Có làm hỏng chỗ khác, khách khác không? | Đây có đúng thứ tôi đã đặt không? |
+| Ví dụ xây nhà | Đội thợ tự thử điện, nước trước khi bàn giao | Chủ nhà cầm bản vẽ đã ký đi kiểm, ký biên bản |
+| Ai làm | Kiểm thử viên **không phải** người viết mã | Người có thẩm quyền phía khách |
+| Căn cứ | Đặc tả + danh sách tình huống phải thử | Tiêu chí nghiệm thu **viết và ký trước khi làm** |
+| Hiện nay | ❌ **0** kiểm thử viên; người viết mã + AI tự kiểm; **1** bộ dữ liệu mẫu | ❌ "Nhìn màn thật"; **0** mẫu biên bản, **0** tiêu chí viết trước |
 
-**0** kiểm thử viên độc lập; **1** bộ dữ liệu mẫu của 1 công ty; **72** tổ hợp phải chạy lại cho mỗi bản vá. Người làm (và AI của họ) kiểm điều họ hiểu, không phải điều khách cần.
+> Vì sao tiêu chí phải viết **trước**: có nó mới phân biệt được **"lỗi"** (mình sửa miễn phí) với **"yêu cầu mới"** (báo giá thêm). Không có thì mọi điều khách chưa vừa ý đều thành lỗi.
 
-**Nghiệm thu**
-
-Hiện là "nhìn màn thật": **0** mẫu biên bản, **0** tiêu chí viết trước. Thiếu đặc tả viết trước thì mọi điều khách chưa vừa ý đều thành "lỗi" phải sửa miễn phí.
-
-> Ngay với khách nội bộ đã **2 lần** kết luận sai lúc xem màn vì xem nhầm nhánh màn hình.
-
-> 🗣 **Lời trình bày:** Hai câu "ai kiểm" và "ai nghiệm thu" phải có câu trả lời bằng tên người và bằng văn bản trước khách đầu tiên.
+> 🗣 **Lời trình bày:** Kiểm thử là việc nội bộ của bên mình, nghiệm thu là thủ tục với khách và là căn cứ thanh toán. Ngay với khách nội bộ đã 2 lần kết luận sai lúc xem màn vì xem nhầm nhánh màn hình (K-39). Trước khách đầu tiên phải trả lời được bằng tên người và bằng văn bản: ai kiểm thử, ai nghiệm thu, theo tiêu chí nào (K-28, K-32, K-33).
 
 ---
 
-## 18. Nút thắt chuyển từ "viết" sang "kiểm"
+## 17. Nút thắt chuyển từ "viết" sang "kiểm"
 
 _Phần 3 · Phát triển với AI_
 
@@ -327,6 +312,28 @@ Cùng một điểm mù: kiểm thử do AI viết kiểm đúng điều AI ngh�
 Chỉ 1 người chạy nhiều phiên AI đã trùng số bước chuyển đổi DB, hai phiên dựng một tính năng hai cách, một phiên xoá DB của phiên kia (K-47).
 
 > 🗣 **Lời trình bày:** AI làm tăng tốc độ viết lên rất nhiều lần, nên chỗ tắc chuyển sang khâu đọc lại, kiểm và đánh giá ảnh hưởng tới các khách khác (K-43: hiện 0 người giữ vai kiến trúc sư).
+
+---
+
+## 18. AI viết mã, AI viết test, AI review — lấy gì bảo đảm chất lượng?
+
+_Phần 3 · Phát triển với AI · câu hỏi còn mở_
+
+**Vì sao "test đạt" chưa đủ**
+
+Khi cùng một AI viết mã, viết test rồi review, ba bước **không độc lập**: AI hiểu sai yêu cầu thì test cũng kiểm theo cái hiểu sai đó, và review cũng gật theo. Test báo đạt chỉ chứng minh mã khớp với **chính nó**, không chứng minh khớp với **điều khách cần**.
+
+**Đã xảy ra ở đây**
+
+**4** lần thay đổi đều ghi "đã kiểm, đạt" — gộp lại thì **6** chỗ hỏng. **3** lỗi gần nhất đều lọt qua bộ test báo đạt. Một màn vỡ bố cục trong khi mọi bước kiểm tự động báo đạt (K-44).
+
+**Hướng cần nghiên cứu**
+
+Test viết từ **tiêu chí nghiệm thu, trước khi viết mã**, bởi người hoặc một phiên AI không nhìn thấy mã · cố ý cài lỗi xem test có bắt được không (mutation test) · **người** review bắt buộc ở chỗ đụng tiền, phân quyền, chuyển đổi DB · đo **lỗi lọt tới khách**, không đo số test.
+
+> Chưa có đáp án chuẩn — đây là câu hỏi chung của cả ngành khi dùng AI viết mã. Phải nghiên cứu, thử và chốt **cách viết test và cách review** trước khi nhận khách đầu tiên.
+
+> 🗣 **Lời trình bày:** Hiện bộ test của hệ thống phần lớn do AI viết cùng lúc với mã. Với một khách nội bộ, lỗi lọt thì sửa hôm sau; với khách ngoài, chất lượng test quyết định lỗi có tới tay khách hay không. Mutation test hiện là 0 (Phần 5).
 
 ---
 
@@ -516,13 +523,17 @@ Người mua trả xong, cổng gửi kết quả về một địa chỉ của 
 
 ---
 
-## 29. Thu tiền kéo theo hoá đơn điện tử — luật thuế không chờ khách
+## 29. Thu tiền kéo theo hoá đơn điện tử và kế toán — luật thuế không chờ khách
 
-_Phần 11 · Hoá đơn điện tử, sàn thương mại điện tử_
+_Phần 11 · Hoá đơn điện tử, kế toán, sàn thương mại điện tử_
 
 **Hoá đơn điện tử (K-120)**
 
 Nghị định 123/2020, sửa bằng Nghị định 70/2025 — ví dụ từ 01/06/2025, hộ kinh doanh doanh thu từ 1 tỷ đồng/năm phải dùng hoá đơn từ máy tính tiền kết nối cơ quan thuế. Mỗi nhà cung cấp hoá đơn (MISA meInvoice, Viettel, VNPT, BKAV…) một kiểu kết nối; luật đổi là **mọi** khách phải nâng cấp đúng hạn. 📊 **0** tích hợp hoá đơn điện tử.
+
+**Kế toán: tự làm hay tích hợp MISA (K-70)**
+
+Tiền thu được phải thành chứng từ, công nợ, sổ sách. Nếu **không tự làm phân hệ kế toán** thì phải **tích hợp với phần mềm kế toán khách đang dùng** — ở Việt Nam thường là MISA: đẩy hoá đơn, phiếu thu – chi, công nợ sang và đối soát hai chiều; MISA đổi cách kết nối là mình phải đổi theo. 📊 Kế toán: **chưa có**; tích hợp kế toán: **0**.
 
 **Sàn thương mại điện tử (K-121)**
 
@@ -621,7 +632,7 @@ _Phần 16 · Công nghệ_
 | Ở lại Node.js + Next.js + PostgreSQL | 📊 |
 | --- | --- |
 | Next.js đổi rất nhanh — mỗi năm một bản lớn, mỗi bản được vá ~2 năm (K-145) | 13 · 14 · 15 · 16 trong 2022–2025 |
-| Giao diện và xử lý dính vào nhau — không có lớp API riêng cho tích hợp, di động, báo cáo (K-146) | **47** tệp thao tác ghi gắn vào màn; API công khai: **0** |
+| Chưa có "cửa" cho phần mềm khác gọi vào (API): mọi thao tác chỉ chạy qua màn web ⇒ muốn làm app di động, nối MISA, nhận kết quả từ cổng thanh toán, kéo số sang Power BI… đều phải xây lớp API trước (K-146) | **47** tệp thao tác ghi gắn vào màn; API công khai: **0** |
 | Node.js xử lý trên một luồng — phép tính nặng làm chậm mọi người khác (K-147) | Chưa đo |
 | IT của khách lớn quen Java, .NET, Python (K-148) | SAP: ABAP/Java · Dynamics: .NET · Odoo, ERPNext: Python |
 

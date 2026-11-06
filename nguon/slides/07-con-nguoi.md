@@ -94,7 +94,7 @@ Ghi chú: Chống cài chui — cài thêm cho công ty con, dùng tiếp sau kh
 | Ở lại Node.js + Next.js + PostgreSQL | 📊 |
 | --- | --- |
 | Next.js đổi rất nhanh — mỗi năm một bản lớn, mỗi bản được vá ~2 năm (K-145) | 13 · 14 · 15 · 16 trong 2022–2025 |
-| Giao diện và xử lý dính vào nhau — không có lớp API riêng cho tích hợp, di động, báo cáo (K-146) | **47** tệp thao tác ghi gắn vào màn; API công khai: **0** |
+| Chưa có "cửa" cho phần mềm khác gọi vào (API): mọi thao tác chỉ chạy qua màn web ⇒ muốn làm app di động, nối MISA, nhận kết quả từ cổng thanh toán, kéo số sang Power BI… đều phải xây lớp API trước (K-146) | **47** tệp thao tác ghi gắn vào màn; API công khai: **0** |
 | Node.js xử lý trên một luồng — phép tính nặng làm chậm mọi người khác (K-147) | Chưa đo |
 | IT của khách lớn quen Java, .NET, Python (K-148) | SAP: ABAP/Java · Dynamics: .NET · Odoo, ERPNext: Python |
 

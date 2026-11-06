@@ -53,20 +53,22 @@ Ghi chú: Khách không có người, không có thời gian, nên thường th�
 
 @@ id: qt-kiem-nghiem
 @@ kicker: Phần 3 · Ai kiểm thử, ai nghiệm thu?
-# Ai kiểm thử, ai nghiệm thu — theo tiêu chí nào?
+# Kiểm thử và nghiệm thu là hai việc khác nhau — cả hai đang thiếu
 
-:::cols
-### Kiểm thử
-**0** kiểm thử viên độc lập; **1** bộ dữ liệu mẫu của 1 công ty; **72** tổ hợp phải chạy lại cho mỗi bản vá. Người làm (và AI của họ) kiểm điều họ hiểu, không phải điều khách cần.
-### Nghiệm thu
-Hiện là "nhìn màn thật": **0** mẫu biên bản, **0** tiêu chí viết trước. Thiếu đặc tả viết trước thì mọi điều khách chưa vừa ý đều thành "lỗi" phải sửa miễn phí.
-:::
+| | Kiểm thử | Nghiệm thu |
+| --- | --- | --- |
+| Là gì | **Bên mình tự kiểm** trước khi giao | **Khách kiểm** rồi ký xác nhận |
+| Trả lời câu hỏi | Chạy đúng như đã thống nhất chưa? Có làm hỏng chỗ khác, khách khác không? | Đây có đúng thứ tôi đã đặt không? |
+| Ví dụ xây nhà | Đội thợ tự thử điện, nước trước khi bàn giao | Chủ nhà cầm bản vẽ đã ký đi kiểm, ký biên bản |
+| Ai làm | Kiểm thử viên **không phải** người viết mã | Người có thẩm quyền phía khách |
+| Căn cứ | Đặc tả + danh sách tình huống phải thử | Tiêu chí nghiệm thu **viết và ký trước khi làm** |
+| Hiện nay | ❌ **0** kiểm thử viên; người viết mã + AI tự kiểm; **1** bộ dữ liệu mẫu | ❌ "Nhìn màn thật"; **0** mẫu biên bản, **0** tiêu chí viết trước |
 
 :::note
-Ngay với khách nội bộ đã **2 lần** kết luận sai lúc xem màn vì xem nhầm nhánh màn hình.
+Vì sao tiêu chí phải viết **trước**: có nó mới phân biệt được **"lỗi"** (mình sửa miễn phí) với **"yêu cầu mới"** (báo giá thêm). Không có thì mọi điều khách chưa vừa ý đều thành lỗi.
 :::
 
-Ghi chú: Hai câu "ai kiểm" và "ai nghiệm thu" phải có câu trả lời bằng tên người và bằng văn bản trước khách đầu tiên.
+Ghi chú: Kiểm thử là việc nội bộ của bên mình, nghiệm thu là thủ tục với khách và là căn cứ thanh toán. Ngay với khách nội bộ đã 2 lần kết luận sai lúc xem màn vì xem nhầm nhánh màn hình (K-39). Trước khách đầu tiên phải trả lời được bằng tên người và bằng văn bản: ai kiểm thử, ai nghiệm thu, theo tiêu chí nào (K-28, K-32, K-33).
 
 @@ id: qt-chu-anh
 @@ kicker: Phần 3 · Đầu vào "chữ và ảnh"
@@ -115,3 +117,22 @@ Chỉ 1 người chạy nhiều phiên AI đã trùng số bước chuyển đ�
 :::
 
 Ghi chú: AI làm tăng tốc độ viết lên rất nhiều lần, nên chỗ tắc chuyển sang khâu đọc lại, kiểm và đánh giá ảnh hưởng tới các khách khác (K-43: hiện 0 người giữ vai kiến trúc sư).
+
+@@ id: qt-ai-kiem
+@@ kicker: Phần 3 · Phát triển với AI · câu hỏi còn mở
+# AI viết mã, AI viết test, AI review — lấy gì bảo đảm chất lượng?
+
+:::cols
+### Vì sao "test đạt" chưa đủ
+Khi cùng một AI viết mã, viết test rồi review, ba bước **không độc lập**: AI hiểu sai yêu cầu thì test cũng kiểm theo cái hiểu sai đó, và review cũng gật theo. Test báo đạt chỉ chứng minh mã khớp với **chính nó**, không chứng minh khớp với **điều khách cần**.
+### Đã xảy ra ở đây
+**4** lần thay đổi đều ghi "đã kiểm, đạt" — gộp lại thì **6** chỗ hỏng. **3** lỗi gần nhất đều lọt qua bộ test báo đạt. Một màn vỡ bố cục trong khi mọi bước kiểm tự động báo đạt (K-44).
+### Hướng cần nghiên cứu
+Test viết từ **tiêu chí nghiệm thu, trước khi viết mã**, bởi người hoặc một phiên AI không nhìn thấy mã · cố ý cài lỗi xem test có bắt được không (mutation test) · **người** review bắt buộc ở chỗ đụng tiền, phân quyền, chuyển đổi DB · đo **lỗi lọt tới khách**, không đo số test.
+:::
+
+:::note
+Chưa có đáp án chuẩn — đây là câu hỏi chung của cả ngành khi dùng AI viết mã. Phải nghiên cứu, thử và chốt **cách viết test và cách review** trước khi nhận khách đầu tiên.
+:::
+
+Ghi chú: Hiện bộ test của hệ thống phần lớn do AI viết cùng lúc với mã. Với một khách nội bộ, lỗi lọt thì sửa hôm sau; với khách ngoài, chất lượng test quyết định lỗi có tới tay khách hay không. Mutation test hiện là 0 (Phần 5).

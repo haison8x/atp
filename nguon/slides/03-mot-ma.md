@@ -16,22 +16,26 @@
 Ghi chú: Đây là bài toán kiến trúc khó nhất của mọi phần mềm doanh nghiệp. Ba trang tiếp theo là ba ví dụ nhỏ nhất cho thấy hệ thống hiện tại chưa chọn cách nào trong bốn cách này.
 
 @@ id: them-o
-@@ kicker: Phần 4 · Ví dụ thứ nhất
-# Hai khách dùng cùng chức năng — khách B chỉ muốn thêm một ô
+@@ kicker: Phần 4 · Yêu cầu thứ nhất: trường dữ liệu động
+# Mỗi khách cần trường riêng — hệ thống phải hỗ trợ trường dữ liệu động
 
-> Ở mọi module, danh sách trường **viết cứng cho mọi công ty**. Thêm một ô cho khách B là sửa mã và sửa DB — và khách A cũng nhận ô đó (K-50).
+> Ví dụ: hai khách dùng cùng chức năng, khách B muốn thêm một ô. Hệ thống cần cho B **tự khai thêm ô bằng cấu hình**, không sửa mã, khách A không bị ảnh hưởng. Hiện nay danh sách trường **viết cứng trong mã, giống nhau cho mọi công ty** ⇒ thêm ô cho B là sửa mã, sửa DB, và A cũng nhận ô đó (K-50).
 
 :::stats
+0 | bảng khai báo trường theo công ty, trong toàn bộ 104 bảng
 66 | bảng từ điển khai cột cứng trong mã
 ~243 | chỗ đọc ô theo vị trí cột — khách bỏ hay đổi thứ tự một cột là gãy
-0 | bảng khai báo trường theo công ty, trong toàn bộ 104 bảng
 :::
 
-Ghi chú: Ngay phần trông "cấu hình được" nhất là các bảng từ điển — dữ liệu lưu dạng JSON theo công ty — thì danh sách cột vẫn khai trong mã, và nghiệp vụ đọc ô theo "cột thứ mấy".
+:::note
+Trường động nghĩa là: khai trường theo từng khách → biểu mẫu và kiểm tra dữ liệu tự sinh → trường hiện ở danh sách, tìm kiếm, báo cáo, xuất Excel → **nâng cấp phiên bản không làm mất trường riêng của khách**.
+:::
+
+Ghi chú: Ngay phần trông "cấu hình được" nhất là các bảng từ điển — dữ liệu lưu dạng JSON theo công ty — thì danh sách cột vẫn khai trong mã, và nghiệp vụ đọc ô theo "cột thứ mấy". Đây là yêu cầu nền tảng thứ nhất; muốn có nó phải thiết kế lại cách lưu và cách đọc dữ liệu của mọi module.
 
 @@ id: them-buoc
-@@ kicker: Phần 4 · Ví dụ thứ hai
-# Quy trình y hệt nhau — công ty X chỉ thêm một bước duyệt
+@@ kicker: Phần 4 · Yêu cầu thứ hai: quy trình động
+# Công ty X chỉ thêm một bước duyệt — cần thiết kế DB và kiến trúc mã cho quy trình động
 
 | Module | Các bước (cố định trong DB) | Ai duyệt (viết cứng trong mã) |
 | --- | --- | --- |
@@ -42,13 +46,14 @@ Ghi chú: Ngay phần trông "cấu hình được" nhất là các bảng từ 
 | Từ điển (66 bảng) | Khoá → Đang sửa → Chờ duyệt → Trả về | Chuỗi duyệt tính trong mã |
 | Kế hoạch năm · tháng | Nháp → Gửi → Xác nhận / Trả về | Theo cây tổ chức, chuỗi vị trí |
 
-:::stats
-38 | luồng trạng thái cố định trong cấu trúc DB
-8+ | hàm tính chuỗi duyệt riêng, mỗi module một kiểu
-0 | chỗ khai báo quy trình theo công ty
+:::cols
+### Thiết kế DB cần có
+Bảng **định nghĩa quy trình** theo công ty và loại hồ sơ: các bước, ai duyệt, điều kiện (ví dụ "trên 3 ngày"). Hồ sơ lưu **phiên bản quy trình + bước đang ở**. Hiện: **38** luồng trạng thái cố định, **0** chỗ khai quy trình theo công ty.
+### Kiến trúc mã cần có
+**Một bộ máy duyệt chung** đọc định nghĩa đó; màn, nhãn, thông báo, hạn xử lý đều lấy từ định nghĩa. Hiện: **8+** hàm tính chuỗi duyệt riêng, mỗi module một kiểu.
 :::
 
-Ghi chú: Thêm một bước cho công ty X là chuyển đổi DB cho mọi khách, cộng rẽ nhánh theo tên khách trong mã, sửa màn, nhãn, thông báo, hạn xử lý (K-51).
+Ghi chú: Với thiết kế hiện tại, thêm một bước cho công ty X là chuyển đổi DB cho mọi khách, cộng rẽ nhánh theo tên khách trong mã, sửa màn, nhãn, thông báo, hạn xử lý (K-51). Hồ sơ đang dở khi quy trình đổi phải chạy tiếp theo quy trình cũ — vì thế hồ sơ phải nhớ phiên bản quy trình.
 
 @@ id: so-cap
 @@ kicker: Phần 4 · Ví dụ thứ ba
@@ -98,7 +103,7 @@ Số cấp, tên cấp, đơn vị cha – con tuỳ khách; cấp trên, phạm
 📊 **25** nhóm tính năng · **38** luồng trạng thái · **8+** cách tính chuỗi duyệt gom về một bộ máy · **~243** chỗ đọc theo vị trí cột · **5** vai và **2** tầng đơn vị cố định phải thành cây do khách khai (K-55).
 :::
 
-Ghi chú: Đây không phải chỉnh vài form, mà là làm lại tầng dưới của mọi module. Nhưng đây cũng chính là thứ biến hệ thống từ "phần mềm của một công ty" thành "sản phẩm cho nhiều công ty".
+Ghi chú: Đây không phải chỉnh vài form, mà là làm lại tầng dưới của mọi module. Nhưng đây cũng chính là thứ biến hệ thống từ "phần mềm của một công ty" thành "sản phẩm cho nhiều công ty". Danh mục (loại nghỉ phép, loại hồ sơ…) đã có hướng làm động theo từ điển — lưu ý giá trị nào kéo theo luật riêng (nghỉ ốm → bảo hiểm, tính lương) thì luật đó cũng phải khai được, không chỉ thêm tên.
 
 @@ id: gan-cung
 @@ kicker: Phần 4 · Gắn cứng với một công ty

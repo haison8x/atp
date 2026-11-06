@@ -90,12 +90,14 @@ Ghi chú: Đây là chỗ ERP chạm vào tiền thật của khách và của n
 Ghi chú: Cổng thanh toán là ví dụ rõ nhất cho thấy "khách tự chọn nâng cấp" không đứng được: bên thứ ba đổi, mình buộc phải đổi theo, ở mọi khách.
 
 @@ id: tt-hoa-don
-@@ kicker: Phần 11 · Hoá đơn điện tử, sàn thương mại điện tử
-# Thu tiền kéo theo hoá đơn điện tử — luật thuế không chờ khách
+@@ kicker: Phần 11 · Hoá đơn điện tử, kế toán, sàn thương mại điện tử
+# Thu tiền kéo theo hoá đơn điện tử và kế toán — luật thuế không chờ khách
 
 :::cols
 ### Hoá đơn điện tử (K-120)
 Nghị định 123/2020, sửa bằng Nghị định 70/2025 — ví dụ từ 01/06/2025, hộ kinh doanh doanh thu từ 1 tỷ đồng/năm phải dùng hoá đơn từ máy tính tiền kết nối cơ quan thuế. Mỗi nhà cung cấp hoá đơn (MISA meInvoice, Viettel, VNPT, BKAV…) một kiểu kết nối; luật đổi là **mọi** khách phải nâng cấp đúng hạn. 📊 **0** tích hợp hoá đơn điện tử.
+### Kế toán: tự làm hay tích hợp MISA (K-70)
+Tiền thu được phải thành chứng từ, công nợ, sổ sách. Nếu **không tự làm phân hệ kế toán** thì phải **tích hợp với phần mềm kế toán khách đang dùng** — ở Việt Nam thường là MISA: đẩy hoá đơn, phiếu thu – chi, công nợ sang và đối soát hai chiều; MISA đổi cách kết nối là mình phải đổi theo. 📊 Kế toán: **chưa có**; tích hợp kế toán: **0**.
 ### Sàn thương mại điện tử (K-121)
 Đơn từ Shopee, Lazada, TikTok Shop phải về ERP; tồn kho phải trừ ngay để không bán vượt. 📊 Thương mại điện tử: **chưa có**; **0** chỗ khoá dòng khi trừ kho.
 :::

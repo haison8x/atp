@@ -1,6 +1,6 @@
 # Bán ERP cho khách ngoài — bản đầy đủ
 
-> Bản đầy đủ để tra cứu, theo đúng thứ tự tài liệu · **76 trang** · [Xem dạng trình chiếu](ban-day-du.html) · [Tài liệu đầy đủ](../tai-lieu/ban-erp-cho-khach-hang.html)
+> Bản đầy đủ để tra cứu, theo đúng thứ tự tài liệu · **77 trang** · [Xem dạng trình chiếu](ban-day-du.html) · [Tài liệu đầy đủ](../tai-lieu/ban-erp-cho-khach-hang.html)
 
 ---
 
@@ -369,7 +369,29 @@ Chỉ 1 người chạy nhiều phiên AI đã trùng số bước chuyển đ�
 
 ---
 
-## 22. Sửa cho khách này mà không hỏng khách khác: bốn cách, cách nào cũng có giá
+## 22. AI viết mã, AI viết test, AI review — lấy gì bảo đảm chất lượng?
+
+_Phần 3 · Phát triển với AI · câu hỏi còn mở_
+
+**Vì sao "test đạt" chưa đủ**
+
+Khi cùng một AI viết mã, viết test rồi review, ba bước **không độc lập**: AI hiểu sai yêu cầu thì test cũng kiểm theo cái hiểu sai đó, và review cũng gật theo. Test báo đạt chỉ chứng minh mã khớp với **chính nó**, không chứng minh khớp với **điều khách cần**.
+
+**Đã xảy ra ở đây**
+
+**4** lần thay đổi đều ghi "đã kiểm, đạt" — gộp lại thì **6** chỗ hỏng. **3** lỗi gần nhất đều lọt qua bộ test báo đạt. Một màn vỡ bố cục trong khi mọi bước kiểm tự động báo đạt (K-44).
+
+**Hướng cần nghiên cứu**
+
+Test viết từ **tiêu chí nghiệm thu, trước khi viết mã**, bởi người hoặc một phiên AI không nhìn thấy mã · cố ý cài lỗi xem test có bắt được không (mutation test) · **người** review bắt buộc ở chỗ đụng tiền, phân quyền, chuyển đổi DB · đo **lỗi lọt tới khách**, không đo số test.
+
+> Chưa có đáp án chuẩn — đây là câu hỏi chung của cả ngành khi dùng AI viết mã. Phải nghiên cứu, thử và chốt **cách viết test và cách review** trước khi nhận khách đầu tiên.
+
+> 🗣 **Lời trình bày:** Hiện bộ test của hệ thống phần lớn do AI viết cùng lúc với mã. Với một khách nội bộ, lỗi lọt thì sửa hôm sau; với khách ngoài, chất lượng test quyết định lỗi có tới tay khách hay không. Mutation test hiện là 0 (Phần 5).
+
+---
+
+## 23. Sửa cho khách này mà không hỏng khách khác: bốn cách, cách nào cũng có giá
 
 _Phần 4 · Một bộ mã cho nhiều khách_
 
@@ -386,23 +408,25 @@ _Phần 4 · Một bộ mã cho nhiều khách_
 
 ---
 
-## 23. Hai khách dùng cùng chức năng — khách B chỉ muốn thêm một ô
+## 24. Mỗi khách cần trường riêng — hệ thống phải hỗ trợ trường dữ liệu động
 
-_Phần 4 · Ví dụ thứ nhất_
+_Phần 4 · Yêu cầu thứ nhất: trường dữ liệu động_
 
-> Ở mọi module, danh sách trường **viết cứng cho mọi công ty**. Thêm một ô cho khách B là sửa mã và sửa DB — và khách A cũng nhận ô đó (K-50).
+> Ví dụ: hai khách dùng cùng chức năng, khách B muốn thêm một ô. Hệ thống cần cho B **tự khai thêm ô bằng cấu hình**, không sửa mã, khách A không bị ảnh hưởng. Hiện nay danh sách trường **viết cứng trong mã, giống nhau cho mọi công ty** ⇒ thêm ô cho B là sửa mã, sửa DB, và A cũng nhận ô đó (K-50).
 
+- **0** — bảng khai báo trường theo công ty, trong toàn bộ 104 bảng
 - **66** — bảng từ điển khai cột cứng trong mã
 - **~243** — chỗ đọc ô theo vị trí cột — khách bỏ hay đổi thứ tự một cột là gãy
-- **0** — bảng khai báo trường theo công ty, trong toàn bộ 104 bảng
 
-> 🗣 **Lời trình bày:** Ngay phần trông "cấu hình được" nhất là các bảng từ điển — dữ liệu lưu dạng JSON theo công ty — thì danh sách cột vẫn khai trong mã, và nghiệp vụ đọc ô theo "cột thứ mấy".
+> Trường động nghĩa là: khai trường theo từng khách → biểu mẫu và kiểm tra dữ liệu tự sinh → trường hiện ở danh sách, tìm kiếm, báo cáo, xuất Excel → **nâng cấp phiên bản không làm mất trường riêng của khách**.
+
+> 🗣 **Lời trình bày:** Ngay phần trông "cấu hình được" nhất là các bảng từ điển — dữ liệu lưu dạng JSON theo công ty — thì danh sách cột vẫn khai trong mã, và nghiệp vụ đọc ô theo "cột thứ mấy". Đây là yêu cầu nền tảng thứ nhất; muốn có nó phải thiết kế lại cách lưu và cách đọc dữ liệu của mọi module.
 
 ---
 
-## 24. Quy trình y hệt nhau — công ty X chỉ thêm một bước duyệt
+## 25. Công ty X chỉ thêm một bước duyệt — cần thiết kế DB và kiến trúc mã cho quy trình động
 
-_Phần 4 · Ví dụ thứ hai_
+_Phần 4 · Yêu cầu thứ hai: quy trình động_
 
 | Module | Các bước (cố định trong DB) | Ai duyệt (viết cứng trong mã) |
 | --- | --- | --- |
@@ -413,15 +437,19 @@ _Phần 4 · Ví dụ thứ hai_
 | Từ điển (66 bảng) | Khoá → Đang sửa → Chờ duyệt → Trả về | Chuỗi duyệt tính trong mã |
 | Kế hoạch năm · tháng | Nháp → Gửi → Xác nhận / Trả về | Theo cây tổ chức, chuỗi vị trí |
 
-- **38** — luồng trạng thái cố định trong cấu trúc DB
-- **8+** — hàm tính chuỗi duyệt riêng, mỗi module một kiểu
-- **0** — chỗ khai báo quy trình theo công ty
+**Thiết kế DB cần có**
 
-> 🗣 **Lời trình bày:** Thêm một bước cho công ty X là chuyển đổi DB cho mọi khách, cộng rẽ nhánh theo tên khách trong mã, sửa màn, nhãn, thông báo, hạn xử lý (K-51).
+Bảng **định nghĩa quy trình** theo công ty và loại hồ sơ: các bước, ai duyệt, điều kiện (ví dụ "trên 3 ngày"). Hồ sơ lưu **phiên bản quy trình + bước đang ở**. Hiện: **38** luồng trạng thái cố định, **0** chỗ khai quy trình theo công ty.
+
+**Kiến trúc mã cần có**
+
+**Một bộ máy duyệt chung** đọc định nghĩa đó; màn, nhãn, thông báo, hạn xử lý đều lấy từ định nghĩa. Hiện: **8+** hàm tính chuỗi duyệt riêng, mỗi module một kiểu.
+
+> 🗣 **Lời trình bày:** Với thiết kế hiện tại, thêm một bước cho công ty X là chuyển đổi DB cho mọi khách, cộng rẽ nhánh theo tên khách trong mã, sửa màn, nhãn, thông báo, hạn xử lý (K-51). Hồ sơ đang dở khi quy trình đổi phải chạy tiếp theo quy trình cũ — vì thế hồ sơ phải nhớ phiên bản quy trình.
 
 ---
 
-## 25. Hai công ty có số cấp tổ chức khác nhau
+## 26. Hai công ty có số cấp tổ chức khác nhau
 
 _Phần 4 · Ví dụ thứ ba_
 
@@ -439,7 +467,7 @@ _Phần 4 · Ví dụ thứ ba_
 
 ---
 
-## 26. Danh mục cố định cũng vậy — và một chỗ đã đi đúng hướng
+## 27. Danh mục cố định cũng vậy — và một chỗ đã đi đúng hướng
 
 _Phần 4 · Danh mục cố định_
 
@@ -455,7 +483,7 @@ Loại nghỉ phép chỉ có đúng **4** loại: phép năm, ốm, không lư�
 
 ---
 
-## 27. Ba tính năng nền tảng phải xây, rồi chuyển từng module sang
+## 28. Ba tính năng nền tảng phải xây, rồi chuyển từng module sang
 
 _Phần 4 · Phải xây gì_
 
@@ -473,11 +501,11 @@ Số cấp, tên cấp, đơn vị cha – con tuỳ khách; cấp trên, phạm
 
 > 📊 **25** nhóm tính năng · **38** luồng trạng thái · **8+** cách tính chuỗi duyệt gom về một bộ máy · **~243** chỗ đọc theo vị trí cột · **5** vai và **2** tầng đơn vị cố định phải thành cây do khách khai (K-55).
 
-> 🗣 **Lời trình bày:** Đây không phải chỉnh vài form, mà là làm lại tầng dưới của mọi module. Nhưng đây cũng chính là thứ biến hệ thống từ "phần mềm của một công ty" thành "sản phẩm cho nhiều công ty".
+> 🗣 **Lời trình bày:** Đây không phải chỉnh vài form, mà là làm lại tầng dưới của mọi module. Nhưng đây cũng chính là thứ biến hệ thống từ "phần mềm của một công ty" thành "sản phẩm cho nhiều công ty". Danh mục (loại nghỉ phép, loại hồ sơ…) đã có hướng làm động theo từ điển — lưu ý giá trị nào kéo theo luật riêng (nghỉ ốm → bảo hiểm, tính lương) thì luật đó cũng phải khai được, không chỉ thêm tên.
 
 ---
 
-## 28. Hệ thống gắn cứng với một công ty ở hàng trăm chỗ
+## 29. Hệ thống gắn cứng với một công ty ở hàng trăm chỗ
 
 _Phần 4 · Gắn cứng với một công ty_
 
@@ -494,7 +522,7 @@ _Phần 4 · Gắn cứng với một công ty_
 
 ---
 
-## 29. File cấu hình vẫn là công tắc bật/tắt, chỉ đổi tên
+## 30. File cấu hình vẫn là công tắc bật/tắt, chỉ đổi tên
 
 _Phần 4 · "Tính năng do file cấu hình quyết định"_
 
@@ -511,7 +539,7 @@ _Phần 4 · "Tính năng do file cấu hình quyết định"_
 
 ---
 
-## 30. Khách nghe "ERP" sẽ so với Odoo, SAP, MISA
+## 31. Khách nghe "ERP" sẽ so với Odoo, SAP, MISA
 
 _Phần 4 · Phạm vi còn phải xây_
 
@@ -530,7 +558,7 @@ _Phần 4 · Phạm vi còn phải xây_
 
 ---
 
-## 31. Ba tầng kiểm thử: nhiều ở dưới, 0 ở trên cùng
+## 32. Ba tầng kiểm thử: nhiều ở dưới, 0 ở trên cùng
 
 _Phần 5 · Kiểm thử_
 
@@ -544,7 +572,7 @@ _Phần 5 · Kiểm thử_
 
 ---
 
-## 32. 46 loại kiểm thử một ERP thương mại cần: 29 loại đang là 0
+## 33. 46 loại kiểm thử một ERP thương mại cần: 29 loại đang là 0
 
 _Phần 5 · Kiểm thử_
 
@@ -564,7 +592,7 @@ _Phần 5 · Kiểm thử_
 
 ---
 
-## 33. Phát hành, nâng cấp, hiệu năng: gần như toàn bộ là 0
+## 34. Phát hành, nâng cấp, hiệu năng: gần như toàn bộ là 0
 
 _Phần 5 · Bảng 46 loại (1/3)_
 
@@ -584,7 +612,7 @@ _Phần 5 · Bảng 46 loại (1/3)_
 
 ---
 
-## 34. Bảo mật và con người
+## 35. Bảo mật và con người
 
 _Phần 5 · Bảng 46 loại (2/3)_
 
@@ -603,7 +631,7 @@ _Phần 5 · Bảng 46 loại (2/3)_
 
 ---
 
-## 35. Chức năng: có nền tốt ở tầng dưới
+## 36. Chức năng: có nền tốt ở tầng dưới
 
 _Phần 5 · Bảng 46 loại (3/3)_
 
@@ -624,7 +652,7 @@ _Phần 5 · Bảng 46 loại (3/3)_
 
 ---
 
-## 36. 10 loại kiểm thử riêng của phần mềm giữ tiền, kho, hồ sơ
+## 37. 10 loại kiểm thử riêng của phần mềm giữ tiền, kho, hồ sơ
 
 _Phần 5 · Riêng của ERP_
 
@@ -645,7 +673,7 @@ _Phần 5 · Riêng của ERP_
 
 ---
 
-## 37. Lỗi đồng thời không bao giờ lộ khi một người thử
+## 38. Lỗi đồng thời không bao giờ lộ khi một người thử
 
 _Phần 5 · Lỗi ERP điển hình_
 
@@ -669,7 +697,7 @@ Cổng thanh toán, hoá đơn điện tử, ngân hàng chỉ kiểm được t
 
 ---
 
-## 38. Kiểm thử cũng tốn — và tốn theo số khách
+## 39. Kiểm thử cũng tốn — và tốn theo số khách
 
 _Phần 5 · Chi phí kiểm thử_
 
@@ -686,7 +714,7 @@ _Phần 5 · Chi phí kiểm thử_
 
 ---
 
-## 39. AI viết nhanh hơn người đọc
+## 40. AI viết nhanh hơn người đọc
 
 _Phần 6 · Mã do AI viết_
 
@@ -703,7 +731,7 @@ _Phần 6 · Mã do AI viết_
 
 ---
 
-## 40. Cấu trúc dữ liệu rất lớn, vẫn phình nhanh, chưa ai review
+## 41. Cấu trúc dữ liệu rất lớn, vẫn phình nhanh, chưa ai review
 
 _Phần 6 · Cấu trúc dữ liệu do AI sinh_
 
@@ -716,7 +744,7 @@ _Phần 6 · Cấu trúc dữ liệu do AI sinh_
 
 ---
 
-## 41. Tốc độ hôm nay dựa vào việc được phép làm sai
+## 42. Tốc độ hôm nay dựa vào việc được phép làm sai
 
 _Phần 6 · Tốc độ dựa vào việc được phép sai_
 
@@ -731,7 +759,7 @@ _Phần 6 · Tốc độ dựa vào việc được phép sai_
 
 ---
 
-## 42. Cần ít nhất một DevOps và một chuyên gia bảo mật — hiện chưa có ai
+## 43. Cần ít nhất một DevOps và một chuyên gia bảo mật — hiện chưa có ai
 
 _Phần 7 · Vận hành_
 
@@ -752,7 +780,7 @@ _Phần 7 · Vận hành_
 
 ---
 
-## 43. Máy chủ là của khách, dữ liệu mình không được xem
+## 44. Máy chủ là của khách, dữ liệu mình không được xem
 
 _Phần 7 · N máy chủ của N khách_
 
@@ -776,7 +804,7 @@ Hệ thống có lệnh **xoá sạch DB** dùng cho phát triển. Chạy nhầ
 
 ---
 
-## 44. Mỗi thành phần thêm vào nhân với số khách
+## 45. Mỗi thành phần thêm vào nhân với số khách
 
 _Phần 7 · Giám sát, nhật ký, bộ nhớ đệm, hàng đợi_
 
@@ -795,7 +823,7 @@ _Phần 7 · Giám sát, nhật ký, bộ nhớ đệm, hàng đợi_
 
 ---
 
-## 45. Giám sát đặt riêng từng khách hay gom về một chỗ?
+## 46. Giám sát đặt riêng từng khách hay gom về một chỗ?
 
 _Phần 7 · Giám sát đặt ở đâu_
 
@@ -816,7 +844,7 @@ Cấu hình, phần làm riêng, phiên bản, lịch sử yêu cầu, đầu m�
 
 ---
 
-## 46. Ba việc bảo mật chuyên gia cũng không làm nhanh được
+## 47. Ba việc bảo mật chuyên gia cũng không làm nhanh được
 
 _Phần 9 · Bảo mật_
 
@@ -831,7 +859,7 @@ _Phần 9 · Bảo mật_
 
 ---
 
-## 47. Câu trả lời đầu tiên cho "cần gì" là: cần người
+## 48. Câu trả lời đầu tiên cho "cần gì" là: cần người
 
 _Lo ngại · "Lo bảo mật nhưng chưa biết cần gì"_
 
@@ -847,7 +875,7 @@ Những việc khó thật nằm trong **cách hệ thống được xây** và 
 
 ---
 
-## 48. Nội bộ thì bỏ qua được nhiều chuẩn — bán cho khách thì không
+## 49. Nội bộ thì bỏ qua được nhiều chuẩn — bán cho khách thì không
 
 _Phần 10 · Chuẩn tuân thủ cho khách Việt Nam_
 
@@ -863,7 +891,7 @@ _Phần 10 · Chuẩn tuân thủ cho khách Việt Nam_
 
 ---
 
-## 49. Bán ERP thì mình thành bên xử lý dữ liệu cá nhân cho khách
+## 50. Bán ERP thì mình thành bên xử lý dữ liệu cá nhân cho khách
 
 _Phần 10 · Dữ liệu cá nhân_
 
@@ -879,7 +907,7 @@ _Phần 10 · Dữ liệu cá nhân_
 
 ---
 
-## 50. Luật đòi "xoá dữ liệu của tôi", ERP lại phải giữ dữ liệu nhiều năm
+## 51. Luật đòi "xoá dữ liệu của tôi", ERP lại phải giữ dữ liệu nhiều năm
 
 _Phần 10 · Dữ liệu cá nhân_
 
@@ -895,7 +923,7 @@ Mã hoá **4** trường của hồ sơ người mới; điện thoại, địa 
 
 ---
 
-## 51. Tệp trên Google Drive, chứng nhận ISO và nhật ký
+## 52. Tệp trên Google Drive, chứng nhận ISO và nhật ký
 
 _Phần 10 · Dữ liệu cá nhân, chứng nhận_
 
@@ -915,7 +943,7 @@ Người lập có tự duyệt được không? Nhật ký có ai sửa đượ
 
 ---
 
-## 52. Khách bán hàng online: ERP phải nhận tiền qua VNPay, MoMo, ZaloPay…
+## 53. Khách bán hàng online: ERP phải nhận tiền qua VNPay, MoMo, ZaloPay…
 
 _Phần 11 · Cổng thanh toán_
 
@@ -934,7 +962,7 @@ Người mua trả xong, cổng gửi kết quả về một địa chỉ của 
 
 ---
 
-## 53. Tiền phải đúng tới từng đồng — và khách mất quyền "tự chọn nâng cấp"
+## 54. Tiền phải đúng tới từng đồng — và khách mất quyền "tự chọn nâng cấp"
 
 _Phần 11 · Cổng thanh toán_
 
@@ -949,13 +977,17 @@ _Phần 11 · Cổng thanh toán_
 
 ---
 
-## 54. Thu tiền kéo theo hoá đơn điện tử — luật thuế không chờ khách
+## 55. Thu tiền kéo theo hoá đơn điện tử và kế toán — luật thuế không chờ khách
 
-_Phần 11 · Hoá đơn điện tử, sàn thương mại điện tử_
+_Phần 11 · Hoá đơn điện tử, kế toán, sàn thương mại điện tử_
 
 **Hoá đơn điện tử (K-120)**
 
 Nghị định 123/2020, sửa bằng Nghị định 70/2025 — ví dụ từ 01/06/2025, hộ kinh doanh doanh thu từ 1 tỷ đồng/năm phải dùng hoá đơn từ máy tính tiền kết nối cơ quan thuế. Mỗi nhà cung cấp hoá đơn (MISA meInvoice, Viettel, VNPT, BKAV…) một kiểu kết nối; luật đổi là **mọi** khách phải nâng cấp đúng hạn. 📊 **0** tích hợp hoá đơn điện tử.
+
+**Kế toán: tự làm hay tích hợp MISA (K-70)**
+
+Tiền thu được phải thành chứng từ, công nợ, sổ sách. Nếu **không tự làm phân hệ kế toán** thì phải **tích hợp với phần mềm kế toán khách đang dùng** — ở Việt Nam thường là MISA: đẩy hoá đơn, phiếu thu – chi, công nợ sang và đối soát hai chiều; MISA đổi cách kết nối là mình phải đổi theo. 📊 Kế toán: **chưa có**; tích hợp kế toán: **0**.
 
 **Sàn thương mại điện tử (K-121)**
 
@@ -965,7 +997,7 @@ Nghị định 123/2020, sửa bằng Nghị định 70/2025 — ví dụ từ 0
 
 ---
 
-## 55. Khách 30 người và khách 50.000 người — cùng một bộ mã
+## 56. Khách 30 người và khách 50.000 người — cùng một bộ mã
 
 _Phần 12 · Hiệu năng_
 
@@ -982,7 +1014,7 @@ _Phần 12 · Hiệu năng_
 
 ---
 
-## 56. Nếu chậm, thủ phạm đầu tiên là cách viết mã
+## 57. Nếu chậm, thủ phạm đầu tiên là cách viết mã
 
 _Phần 12 · Hiệu năng_
 
@@ -997,7 +1029,7 @@ _Phần 12 · Hiệu năng_
 
 ---
 
-## 57. Dữ liệu hôm nay chỉ 3,7 MB — và có cả một bậc thang cách xử lý
+## 58. Dữ liệu hôm nay chỉ 3,7 MB — và có cả một bậc thang cách xử lý
 
 _Lo ngại · "Dữ liệu nhiều làm chậm, nên cắt dữ liệu từng năm"_
 
@@ -1017,7 +1049,7 @@ _Lo ngại · "Dữ liệu nhiều làm chậm, nên cắt dữ liệu từng n�
 
 ---
 
-## 58. "Cắt dữ liệu từng năm" có tác dụng phụ
+## 59. "Cắt dữ liệu từng năm" có tác dụng phụ
 
 _Lo ngại · "Cắt dữ liệu từng năm"_
 
@@ -1039,7 +1071,7 @@ Nhiều loại dữ liệu theo luật phải giữ nhiều năm; dữ liệu n�
 
 ---
 
-## 59. Ba kiểu cài = ba quy trình, ba mức trách nhiệm
+## 60. Ba kiểu cài = ba quy trình, ba mức trách nhiệm
 
 _Phần 13 · Triển khai tại khách_
 
@@ -1056,7 +1088,7 @@ _Phần 13 · Triển khai tại khách_
 
 ---
 
-## 60. Môi trường thử, định cỡ máy, đào tạo
+## 61. Môi trường thử, định cỡ máy, đào tạo
 
 _Phần 13 · Triển khai tại khách_
 
@@ -1069,7 +1101,7 @@ _Phần 13 · Triển khai tại khách_
 
 ---
 
-## 61. 8 vai cần người chịu trách nhiệm, kể cả khi dùng AI thoải mái
+## 62. 8 vai cần người chịu trách nhiệm, kể cả khi dùng AI thoải mái
 
 _Phần 14 · Đội ngũ · hiện 0 vai có người riêng_
 
@@ -1111,7 +1143,7 @@ Quét, vá, theo dõi lỗ hổng, kiểm thử xâm nhập
 
 ---
 
-## 62. Người mới tiếp nhận chậm — kể cả có AI
+## 63. Người mới tiếp nhận chậm — kể cả có AI
 
 _Phần 14 · Đội ngũ_
 
@@ -1127,7 +1159,7 @@ _Phần 14 · Đội ngũ_
 
 ---
 
-## 63. Làm rối mã là gờ giảm tốc, không phải ổ khoá
+## 64. Làm rối mã là gờ giảm tốc, không phải ổ khoá
 
 _Phần 15 · Đóng gói và làm rối mã_
 
@@ -1143,7 +1175,7 @@ _Phần 15 · Đóng gói và làm rối mã_
 
 ---
 
-## 64. Ngôn ngữ lập trình không phải nút thắt chính
+## 65. Ngôn ngữ lập trình không phải nút thắt chính
 
 _Phần 16 · Công nghệ_
 
@@ -1152,7 +1184,7 @@ _Phần 16 · Công nghệ_
 | Ở lại Node.js + Next.js + PostgreSQL | 📊 |
 | --- | --- |
 | Next.js đổi rất nhanh — mỗi năm một bản lớn, mỗi bản được vá ~2 năm (K-145) | 13 · 14 · 15 · 16 trong 2022–2025 |
-| Giao diện và xử lý dính vào nhau — không có lớp API riêng cho tích hợp, di động, báo cáo (K-146) | **47** tệp thao tác ghi gắn vào màn; API công khai: **0** |
+| Chưa có "cửa" cho phần mềm khác gọi vào (API): mọi thao tác chỉ chạy qua màn web ⇒ muốn làm app di động, nối MISA, nhận kết quả từ cổng thanh toán, kéo số sang Power BI… đều phải xây lớp API trước (K-146) | **47** tệp thao tác ghi gắn vào màn; API công khai: **0** |
 | Node.js xử lý trên một luồng — phép tính nặng làm chậm mọi người khác (K-147) | Chưa đo |
 | IT của khách lớn quen Java, .NET, Python (K-148) | SAP: ABAP/Java · Dynamics: .NET · Odoo, ERPNext: Python |
 
@@ -1160,7 +1192,7 @@ _Phần 16 · Công nghệ_
 
 ---
 
-## 65. Chuyển sang Python / Java / Go: viết lại là làm lại từ đầu
+## 66. Chuyển sang Python / Java / Go: viết lại là làm lại từ đầu
 
 _Phần 16 · Công nghệ_
 
@@ -1177,7 +1209,7 @@ _Phần 16 · Công nghệ_
 
 ---
 
-## 66. Hợp đồng và báo giá cần những thứ kỹ thuật chưa có
+## 67. Hợp đồng và báo giá cần những thứ kỹ thuật chưa có
 
 _Phần 17 · Thị trường, giá, hợp đồng_
 
@@ -1193,7 +1225,7 @@ _Phần 17 · Thị trường, giá, hợp đồng_
 
 ---
 
-## 67. Một khách chưa phải là thị trường
+## 68. Một khách chưa phải là thị trường
 
 _Phần 17 · Thị trường_
 
@@ -1207,7 +1239,7 @@ _Phần 17 · Thị trường_
 
 ---
 
-## 68. Ba cấp khách, ba cách cài
+## 69. Ba cấp khách, ba cách cài
 
 _Lo ngại · "Mỗi khách một bài toán"_
 
@@ -1229,7 +1261,7 @@ Nhiều máy ứng dụng, bản sao DB, hàng đợi, bộ nhớ đệm. Lo: t�
 
 ---
 
-## 69. Một bộ mã phục vụ nhiều khách: ngành đã đi ba con đường
+## 70. Một bộ mã phục vụ nhiều khách: ngành đã đi ba con đường
 
 _Bốn phương án_
 
@@ -1253,7 +1285,7 @@ Lõi không ai sửa cho một khách; phần riêng là gói cài thêm. Ví d�
 
 ---
 
-## 70. So sánh S với A, B, C
+## 71. So sánh S với A, B, C
 
 _Bốn phương án · so sánh_
 
@@ -1271,7 +1303,7 @@ _Bốn phương án · so sánh_
 
 ---
 
-## 71. Phương án S dùng mã của A, nhưng chịu chi phí của B
+## 72. Phương án S dùng mã của A, nhưng chịu chi phí của B
 
 _Bốn phương án_
 
@@ -1287,7 +1319,7 @@ Khác B ở chỗ các bộ mã đó **không sinh ra để chiều khách**, m�
 
 ---
 
-## 72. A khó với khách Việt, B tốn theo số khách, C cần thứ chưa có
+## 73. A khó với khách Việt, B tốn theo số khách, C cần thứ chưa có
 
 _Bốn phương án_
 
@@ -1307,7 +1339,7 @@ Microsoft bỏ cách sửa thẳng mã Navision cho từng khách để chuyển
 
 ---
 
-## 73. Mỗi phương án là một kiểu công ty khác nhau
+## 74. Mỗi phương án là một kiểu công ty khác nhau
 
 _Bốn phương án · tổ chức công ty_
 
@@ -1322,7 +1354,7 @@ _Bốn phương án · tổ chức công ty_
 
 ---
 
-## 74. Phải chọn hướng trước khi viết thêm module
+## 75. Phải chọn hướng trước khi viết thêm module
 
 _Kết_
 
@@ -1340,7 +1372,7 @@ Không cần nền tảng, nhưng **phí bảo trì và đội bảo trì theo s
 
 ---
 
-## 75. Những câu cần trả lời trước khi đi tiếp
+## 76. Những câu cần trả lời trước khi đi tiếp
 
 _Kết · những câu cần trả lời_
 
@@ -1361,7 +1393,7 @@ _Kết · những câu cần trả lời_
 
 ---
 
-## 76. Tài liệu đầy đủ và nguồn số liệu
+## 77. Tài liệu đầy đủ và nguồn số liệu
 
 _Kết · nguồn_
 
