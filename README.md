@@ -6,8 +6,8 @@ Tài liệu thảo luận: 159 khó khăn khi đóng gói một hệ thống ERP
 
 | | HTML | Markdown |
 | --- | --- | --- |
-| Slide bản vừa — 40 trang | [slides/ban-vua-40-trang.html](slides/ban-vua-40-trang.html) | [slides/ban-vua-40-trang.md](slides/ban-vua-40-trang.md) |
-| Slide bản đầy đủ — 77 trang | [slides/ban-day-du.html](slides/ban-day-du.html) | [slides/ban-day-du.md](slides/ban-day-du.md) |
+| Slide bản vừa — 41 trang | [slides/ban-vua-40-trang.html](slides/ban-vua-40-trang.html) | [slides/ban-vua-40-trang.md](slides/ban-vua-40-trang.md) |
+| Slide bản đầy đủ — 78 trang | [slides/ban-day-du.html](slides/ban-day-du.html) | [slides/ban-day-du.md](slides/ban-day-du.md) |
 | Tài liệu đầy đủ (159 khó khăn, 17 phần) | [tai-lieu/ban-erp-cho-khach-hang.html](tai-lieu/ban-erp-cho-khach-hang.html) | [tai-lieu/ban-erp-cho-khach-hang.md](tai-lieu/ban-erp-cho-khach-hang.md) |
 
 Trang chính khi bật GitHub Pages: `index.html`.
@@ -20,7 +20,7 @@ Trang chính khi bật GitHub Pages: `index.html`.
 
 Slide không viết tay bằng HTML. Nguồn nằm ở:
 
-- `nguon/slides/*.md` — thư viện slide; mỗi slide bắt đầu bằng `@@ id: …`, có `@@ kicker:` và `@@ layout:` (`default` · `dark` · `cover`), tiêu đề `# …`, phần thân Markdown, và lời trình bày sau dòng `Ghi chú:`.
+- `nguon/slides/*.md` — thư viện slide; mỗi slide bắt đầu bằng `@@ id: …`, có `@@ kicker:` và `@@ layout:` (`default` · `dark` · `cover` · `image` — kèm `@@ image: assets/<tệp>`), tiêu đề `# …`, phần thân Markdown, và lời trình bày sau dòng `Ghi chú:`.
   Khối đặc biệt: `:::stats` (mỗi dòng `số | chú thích`), `:::cols [số thẻ tô nổi]` (mỗi thẻ mở bằng `### tiêu đề`), `:::note`.
 - `nguon/decks.json` — thứ tự slide của từng bộ (một slide dùng chung được cho nhiều bộ).
 

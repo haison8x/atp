@@ -122,3 +122,13 @@ Ghi chú: Không cần trả lời hết trong buổi họp, nhưng mỗi câu c
 > Các mục luật lấy từ bài phân tích của công ty luật, kiểm toán và báo chí — cần luật sư đối chiếu văn bản gốc trước khi dùng cho hợp đồng.
 
 Ghi chú: Ai muốn kiểm lại một con số thì mở tài liệu đầy đủ, tìm mã K-xx tương ứng, rồi xem cách đo ở Phụ lục B.
+
+@@ id: ket-huong
+@@ layout: image
+@@ image: assets/sai-huong.png
+@@ kicker: Kết
+# Đi sai hướng thì nhanh mấy cũng vô ích
+
+AI giúp mình đi **rất nhanh**. Trước khi tăng tốc, hãy chắc chắn mình đang đi **đúng hướng**.
+
+Ghi chú: Câu trên ảnh: "Speed is irrelevant if you are going in the wrong direction" — tốc độ không còn ý nghĩa nếu đi sai hướng. Đây là lời kết: tốc độ viết mã nhờ AI là thật, nhưng hướng đi — một bộ mã hay nhiều bộ mã, xây nền tảng trước hay nhận khách trước — phải chốt trước khi tăng tốc.

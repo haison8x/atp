@@ -1,6 +1,6 @@
 # Bán ERP cho khách ngoài — bản đầy đủ
 
-> Bản đầy đủ để tra cứu, theo đúng thứ tự tài liệu · **77 trang** · [Xem dạng trình chiếu](ban-day-du.html) · [Tài liệu đầy đủ](../tai-lieu/ban-erp-cho-khach-hang.html)
+> Bản đầy đủ để tra cứu, theo đúng thứ tự tài liệu · **78 trang** · [Xem dạng trình chiếu](ban-day-du.html) · [Tài liệu đầy đủ](../tai-lieu/ban-erp-cho-khach-hang.html)
 
 ---
 
@@ -1405,3 +1405,15 @@ _Kết · nguồn_
 > Các mục luật lấy từ bài phân tích của công ty luật, kiểm toán và báo chí — cần luật sư đối chiếu văn bản gốc trước khi dùng cho hợp đồng.
 
 > 🗣 **Lời trình bày:** Ai muốn kiểm lại một con số thì mở tài liệu đầy đủ, tìm mã K-xx tương ứng, rồi xem cách đo ở Phụ lục B.
+
+---
+
+## 78. Đi sai hướng thì nhanh mấy cũng vô ích
+
+![Đi sai hướng thì nhanh mấy cũng vô ích](assets/sai-huong.png)
+
+_Kết_
+
+AI giúp mình đi **rất nhanh**. Trước khi tăng tốc, hãy chắc chắn mình đang đi **đúng hướng**.
+
+> 🗣 **Lời trình bày:** Câu trên ảnh: "Speed is irrelevant if you are going in the wrong direction" — tốc độ không còn ý nghĩa nếu đi sai hướng. Đây là lời kết: tốc độ viết mã nhờ AI là thật, nhưng hướng đi — một bộ mã hay nhiều bộ mã, xây nền tảng trước hay nhận khách trước — phải chốt trước khi tăng tốc.

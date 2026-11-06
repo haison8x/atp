@@ -196,10 +196,12 @@ for (const deck of decks) {
   const html = slides.map((s, k) => {
     const n = k + 1;
     const layout = s.layout || 'default';
-    const head = layout === 'cover'
+    const head = layout === 'image'
+      ? `<div class="image-wrap"><img src="${esc(s.image || '')}" alt="${esc(s.title)}"><div class="image-text"><p class="kicker">${inline(s.kicker || '')}</p><h1>${inline(s.title)}</h1><div class="content">${renderBlocks(s.body)}</div></div></div>`
+      : layout === 'cover'
       ? `<div class="cover-wrap"><p class="kicker">${inline(s.kicker || '')}</p><h1>${inline(s.title)}</h1><div class="content">${renderBlocks(s.body)}</div></div>`
       : `<header><p class="kicker">${inline(s.kicker || '')}</p><h2>${inline(s.title)}</h2></header><div class="content">${renderBlocks(s.body)}</div>`;
-    const foot = layout === 'cover' ? '' : `<footer><span>${esc(deck.footer)}</span><span>${n} / ${total}</span></footer>`;
+    const foot = layout === 'cover' || layout === 'image' ? '' : `<footer><span>${esc(deck.footer)}</span><span>${n} / ${total}</span></footer>`;
     return `<section class="slide ${layout}" id="s${n}" data-title="${esc(s.title)}">${head}${foot}<aside class="notes">${inline(s.notes)}</aside></section>`;
   }).join('\n');
   const page = `<!doctype html>
@@ -243,6 +245,8 @@ ${html}
         '---',
         '',
         `## ${k + 1}. ${s.title}`,
+        s.image ? `
+![${s.title}](${s.image})` : '',
         s.kicker ? `\n_${s.kicker}_` : '',
         '',
         body,

@@ -44,7 +44,8 @@
       "pa-s",
       "pa-to-chuc",
       "ket-chon",
-      "ket-cau-hoi"
+      "ket-cau-hoi",
+      "ket-huong"
     ]
   },
   {
@@ -129,7 +130,8 @@
       "pa-to-chuc",
       "ket-chon",
       "ket-cau-hoi",
-      "ket-nguon"
+      "ket-nguon",
+      "ket-huong"
     ]
   }
 ]

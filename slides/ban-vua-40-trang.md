@@ -1,6 +1,6 @@
 # Bán ERP cho khách ngoài — bản vừa (40 trang)
 
-> Bản vừa, trình bày khoảng 45–60 phút · **40 trang** · [Xem dạng trình chiếu](ban-vua-40-trang.html) · [Tài liệu đầy đủ](../tai-lieu/ban-erp-cho-khach-hang.html)
+> Bản vừa, trình bày khoảng 45–60 phút · **41 trang** · [Xem dạng trình chiếu](ban-vua-40-trang.html) · [Tài liệu đầy đủ](../tai-lieu/ban-erp-cho-khach-hang.html)
 
 ---
 
@@ -764,3 +764,15 @@ _Kết · những câu cần trả lời_
 12. Phân hệ nào trong 46 phân hệ chưa có phải làm xong trước khách đầu tiên?
 
 > 🗣 **Lời trình bày:** Không cần trả lời hết trong buổi họp, nhưng mỗi câu chưa có câu trả lời là một rủi ro sẽ lộ ra ở khách đầu tiên.
+
+---
+
+## 41. Đi sai hướng thì nhanh mấy cũng vô ích
+
+![Đi sai hướng thì nhanh mấy cũng vô ích](assets/sai-huong.png)
+
+_Kết_
+
+AI giúp mình đi **rất nhanh**. Trước khi tăng tốc, hãy chắc chắn mình đang đi **đúng hướng**.
+
+> 🗣 **Lời trình bày:** Câu trên ảnh: "Speed is irrelevant if you are going in the wrong direction" — tốc độ không còn ý nghĩa nếu đi sai hướng. Đây là lời kết: tốc độ viết mã nhờ AI là thật, nhưng hướng đi — một bộ mã hay nhiều bộ mã, xây nền tảng trước hay nhận khách trước — phải chốt trước khi tăng tốc.
