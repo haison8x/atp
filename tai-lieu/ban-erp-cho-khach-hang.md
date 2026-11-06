@@ -165,7 +165,8 @@ từng khách** — có trả lời ngắn ở mục "Ba lo ngại kỹ thuật"
   **ép** cập nhật (tức là không còn "khách tự chọn"), hoặc **vá ngược** cho từng phiên bản cũ.
   📊 CVE-2025-55182 (12/2025): **10/10** điểm, kẻ tấn công chiếm máy chủ **không cần đăng nhập** chỉ bằng **1**
   lần gửi yêu cầu, **đã bị khai thác thật**; nhà phát triển Next.js phải ra bản vá riêng cho **7** dòng phiên
-  bản. Hệ thống đang dùng đúng nền tảng này (Next.js 16, React 19).
+  bản. Hệ thống dùng đúng nền tảng này (Next.js 16, React 19) — hôm nay **đã ở bản an toàn** (Next.js 16.3.5,
+  React 19.3.0) vì chỉ có một máy chủ do mình giữ; khi bán, khách "chọn không nâng cấp" thì máy chủ của họ mở toang.
 - **K-20 · Nhiều phiên bản cùng sống.** Mỗi phiên bản còn khách dùng là một sản phẩm phải hỗ trợ: tái hiện
   lỗi, vá lỗi — trên **đúng** phiên bản đó. Không tách nhánh mã nhưng thực chất vẫn là nhiều sản phẩm.
   📊 Nhịp hiện tại **434** lần thay đổi mã / 14 ngày. Giả sử phát hành mỗi tháng và hỗ trợ 12 tháng ⇒ tới **12

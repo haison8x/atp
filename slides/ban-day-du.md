@@ -196,7 +196,7 @@ _Phần 2 · "Như Windows"_
 - **1** — lần gửi yêu cầu là chiếm được máy chủ, không cần đăng nhập
 - **7** — dòng phiên bản Next.js phải ra bản vá riêng
 
-> Lỗ hổng **đã bị khai thác thật**, và hệ thống đang dùng đúng nền tảng này. Khách "chọn không nâng cấp" thì máy chủ của họ mở toang.
+> Lỗ hổng **đã bị khai thác thật**. Hệ thống mình dùng đúng nền tảng này — hôm nay **mình đã ở bản an toàn**, vì chỉ có một máy chủ do mình giữ. Khi bán, khách "chọn không nâng cấp" thì máy chủ của họ mở toang.
 
 - Phải chọn: **ép** cập nhật (tức là không còn "khách tự chọn") hoặc **vá ngược** cho từng phiên bản cũ (K-19).
 - Windows **ép** cập nhật bảo mật mỗi tháng, và không phải chuyển đổi dữ liệu kế toán, kho, nhân sự mỗi lần nâng (K-21).
