@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bán ERP cho khách ngoài</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root { --bg: #F7F5F0; --ink: #1B2430; --muted: #4A5260; --accent: #B4462B; --card: #FFFDF9; --line: #E4DFD5; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { --bg: #10151c; --ink: #F7F5F0; --muted: #B8C0CC; --accent: #E8B04B; --card: #1B2430; --line: #2C3848; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 400 17px/1.6 'Be Vietnam Pro', Arial, sans-serif; }
+  main { max-width: 1040px; margin: 0 auto; padding: 56px 16px 72px; }
+  .kicker { color: var(--accent); font-weight: 600; letter-spacing: 2px; text-transform: uppercase; font-size: 13px; margin: 0 0 10px; }
+  h1 { font-size: clamp(30px, 5vw, 48px); line-height: 1.12; margin: 0 0 16px; letter-spacing: -0.5px; }
+  .lead { color: var(--muted); font-size: 18px; max-width: 760px; margin: 0 0 40px; }
+  h2 { font-size: 20px; margin: 40px 0 14px; }
+  .grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 20px; display: flex; flex-direction: column; gap: 8px; }
+  .card h3 { margin: 0; font-size: 19px; }
+  .card p { margin: 0; color: var(--muted); font-size: 15px; }
+  .num { font-size: 34px; font-weight: 800; color: var(--accent); line-height: 1.1; }
+  .links { display: flex; gap: 10px; flex-wrap: wrap; margin-top: auto; padding-top: 8px; }
+  .links a { color: var(--ink); text-decoration: none; border: 1px solid var(--line); border-radius: 8px; padding: 6px 12px; font-weight: 600; font-size: 14px; }
+  .links a.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .note { color: var(--muted); font-size: 14px; margin-top: 40px; border-top: 1px solid var(--line); padding-top: 16px; }
+  kbd { border: 1px solid var(--line); border-radius: 4px; padding: 0 5px; font-size: 13px; }
+</style>
+</head>
+<body>
+<main>
+  <p class="kicker">Tài liệu thảo luận nội bộ</p>
+  <h1>Bán ERP cho khách ngoài: những khó khăn kỹ thuật</h1>
+  <p class="lead">Mục tiêu chung là xây được một sản phẩm đáp ứng nhu cầu của nhiều khách hàng. Tài liệu này liệt kê những gì phải giải để đạt mục tiêu đó — 159 khó khăn, mỗi mục kèm số liệu đo trên chính hệ thống đang chạy.</p>
+
+  <h2>Tài liệu</h2>
+  <div class="grid">
+    <div class="card">
+      <div class="num">159</div>
+      <h3>Tài liệu đầy đủ</h3>
+      <p>17 phần, xếp theo mức quan trọng giảm dần; phụ lục từ điển, số liệu đo và nguồn bên ngoài.</p>
+      <div class="links"><a class="primary" href="tai-lieu/ban-erp-cho-khach-hang.html">Đọc bản HTML</a><a href="tai-lieu/ban-erp-cho-khach-hang.md">Bản Markdown</a></div>
+    </div>
+  </div>
+
+  <h2>Bộ slide</h2>
+  <div class="grid">
+    <div class="card">
+      <div class="num">20</div>
+      <h3>Bản ngắn</h3>
+      <p>Khoảng 20 phút — các ý chính, so sánh phương án, những câu cần trả lời.</p>
+      <div class="links"><a class="primary" href="slides/ban-ngan-20-trang.html">Trình chiếu</a><a href="slides/ban-ngan-20-trang.md">Markdown</a></div>
+    </div>
+    <div class="card">
+      <div class="num">40</div>
+      <h3>Bản vừa</h3>
+      <p>Khoảng 45–60 phút — đi qua mọi nhóm khó khăn, mỗi nhóm vài trang.</p>
+      <div class="links"><a class="primary" href="slides/ban-vua-40-trang.html">Trình chiếu</a><a href="slides/ban-vua-40-trang.md">Markdown</a></div>
+    </div>
+    <div class="card">
+      <div class="num">76</div>
+      <h3>Bản đầy đủ</h3>
+      <p>Theo đúng thứ tự tài liệu, mọi bảng chính — dùng để tra cứu và bàn sâu từng phần.</p>
+      <div class="links"><a class="primary" href="slides/ban-day-du.html">Trình chiếu</a><a href="slides/ban-day-du.md">Markdown</a></div>
+    </div>
+  </div>
+
+  <p class="note">Trình chiếu: <kbd>←</kbd> <kbd>→</kbd> hoặc <kbd>Space</kbd> để chuyển trang · <kbd>N</kbd> bật/tắt lời trình bày · <kbd>F</kbd> toàn màn hình · in ra PDF bằng <kbd>Ctrl</kbd>+<kbd>P</kbd> (mỗi trang một tờ). Các mục luật lấy từ bài phân tích của công ty luật, kiểm toán và báo chí — cần luật sư đối chiếu văn bản gốc trước khi dùng cho hợp đồng.</p>
+</main>
+</body>
+</html>

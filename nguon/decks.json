@@ -1,0 +1,65 @@
+[
+  {
+    "file": "ban-ngan-20-trang",
+    "title": "Bán ERP cho khách ngoài — bản ngắn (20 trang)",
+    "footer": "Bán ERP cho khách ngoài · bản ngắn",
+    "summary": "Bản ngắn, trình bày khoảng 20 phút",
+    "slides": [
+      "cover-20", "muc-tieu-s", "nam-dieu-kien",
+      "o-va-buoc", "so-cap", "nen-tang-3",
+      "du-lieu-lui", "windows-cve",
+      "qt-12-gon", "kt-46", "ai-toc-do",
+      "vh-gon", "hn-bac-thang",
+      "ld-gon", "tt-gon",
+      "nguoi-gon",
+      "pa-tong-quan", "pa-s", "pa-to-chuc",
+      "ket-gon"
+    ]
+  },
+  {
+    "file": "ban-vua-40-trang",
+    "title": "Bán ERP cho khách ngoài — bản vừa (40 trang)",
+    "footer": "Bán ERP cho khách ngoài · bản vừa",
+    "summary": "Bản vừa, trình bày khoảng 45–60 phút",
+    "slides": [
+      "cover-40", "muc-dich", "mo-hinh-s", "nam-dieu-kien",
+      "them-o", "them-buoc", "so-cap", "danh-muc", "nen-tang-3", "gan-cung", "pham-vi",
+      "du-lieu-lui", "du-lieu-quyen", "windows-cve", "windows-vong-doi",
+      "qt-12-buoc", "qt-kiem-nghiem", "qt-ai",
+      "kt-tang", "kt-46", "kt-erp",
+      "vh-n-may", "vh-devops", "bm-kho", "hn-bac-thang",
+      "ld-bang", "ld-ben-xu-ly", "tt-cong", "tt-hoa-don",
+      "lo-cap-khach", "dn-8-vai", "dg-lam-roi", "cn-o-lai", "mk-thi-truong",
+      "pa-tong-quan", "pa-bang", "pa-s", "pa-to-chuc",
+      "ket-chon", "ket-cau-hoi"
+    ]
+  },
+  {
+    "file": "ban-day-du",
+    "title": "Bán ERP cho khách ngoài — bản đầy đủ",
+    "footer": "Bán ERP cho khách ngoài · bản đầy đủ",
+    "summary": "Bản đầy đủ để tra cứu, theo đúng thứ tự tài liệu",
+    "slides": [
+      "cover-full", "muc-dich", "mo-hinh-s", "can-nha", "nam-dieu-kien", "tam-dieu",
+      "du-lieu-nhip", "du-lieu-lui", "du-lieu-quyen", "du-lieu-khac", "du-lieu-db",
+      "windows-cve", "windows-nhieu-ban", "windows-vong-doi", "windows-chinh-sach",
+      "qt-12-buoc", "qt-kiem-thu", "qt-nghiem-thu", "qt-chu-anh", "qt-uoc-luong", "qt-ai",
+      "mot-ma-4-cach", "them-o", "them-buoc", "so-cap", "danh-muc", "nen-tang-3", "gan-cung", "cau-hinh", "pham-vi",
+      "kt-tang", "kt-46", "kt-bang-1", "kt-bang-2", "kt-bang-3", "kt-erp", "kt-dong-thoi", "kt-chi-phi",
+      "ai-toc-do", "ai-cau-truc", "ai-on-dinh",
+      "vh-devops", "vh-n-may", "vh-giam-sat", "vh-rieng-gom",
+      "bm-kho", "lo-bao-mat",
+      "ld-bang", "ld-ben-xu-ly", "ld-xoa", "ld-drive-iso",
+      "tt-cong", "tt-tien", "tt-hoa-don",
+      "hn-hai-khach", "hn-ma", "hn-bac-thang", "lo-du-lieu",
+      "tk-ba-kieu", "tk-moi-truong",
+      "dn-8-vai", "dn-nguoi-moi",
+      "dg-lam-roi",
+      "cn-o-lai", "cn-chuyen",
+      "mk-hop-dong", "mk-thi-truong",
+      "lo-cap-khach",
+      "pa-tong-quan", "pa-bang", "pa-s", "pa-b-c", "pa-to-chuc",
+      "ket-chon", "ket-cau-hoi", "ket-nguon"
+    ]
+  }
+]

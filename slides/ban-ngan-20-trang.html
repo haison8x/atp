@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bán ERP cho khách ngoài — bản ngắn (20 trang)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>:root {
+  --bg: #F7F5F0;
+  --ink: #1B2430;
+  --muted: #4A5260;
+  --soft: #5B6270;
+  --accent: #B4462B;
+  --gold: #E8B04B;
+  --card: #FFFDF9;
+  --line: #E4DFD5;
+  --band: #EFEBE3;
+  --ok: #2F7D4F;
+  --ok-bg: #E6F2EA;
+  --part: #8A6410;
+  --part-bg: #FBEFD2;
+  --no: #A3352A;
+  --no-bg: #F8E3DF;
+  --dark: #1B2430;
+  --dark-ink: #F7F5F0;
+  --dark-muted: #B8C0CC;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; background: #10151c; overflow: hidden; }
+body { font-family: 'Be Vietnam Pro', Arial, sans-serif; color: var(--ink); }
+
+.viewport { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; }
+.deck { position: relative; width: 1920px; height: 1080px; flex: none; transform-origin: center center; }
+
+.slide {
+  position: absolute; inset: 0; width: 1920px; height: 1080px; overflow: hidden;
+  background: var(--bg); color: var(--ink);
+  padding: 88px 120px 120px; display: flex; flex-direction: column; gap: 36px;
+  visibility: hidden; opacity: 0; transition: opacity .25s ease;
+  --fit: 1;
+}
+.slide.active { visibility: visible; opacity: 1; }
+
+.slide header { display: flex; flex-direction: column; gap: 14px; flex: none; }
+.kicker { font-size: 24px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); }
+.slide h2 { font-size: 64px; font-weight: 700; line-height: 1.12; letter-spacing: -0.5px; }
+
+.content {
+  flex: 1; min-height: 0; display: flex; flex-direction: column; gap: 28px;
+  font-size: calc(30px * var(--fit)); line-height: 1.45; color: var(--muted);
+}
+.content b { color: var(--ink); font-weight: 700; }
+.content p.lead { font-size: 1.12em; color: var(--ink); line-height: 1.4; }
+.content h4 { font-size: 1em; font-weight: 700; color: var(--ink); text-transform: uppercase; letter-spacing: 1px; }
+.content ul, .content ol { padding-left: 1.2em; display: flex; flex-direction: column; gap: .35em; }
+.content li::marker { color: var(--accent); font-weight: 700; }
+.content code { font-family: ui-monospace, Consolas, monospace; font-size: .9em; background: var(--band); padding: 0 .25em; border-radius: 4px; }
+.content a { color: var(--accent); }
+
+.stats { display: grid; gap: 24px; grid-template-columns: repeat(var(--cols, 3), 1fr); }
+.stats.n1 { --cols: 1; } .stats.n2 { --cols: 2; } .stats.n4 { --cols: 4; } .stats.n5 { --cols: 5; } .stats.n6 { --cols: 3; } .stats.n8 { --cols: 4; }
+.stat { background: var(--card); border: 2px solid var(--line); border-radius: 18px; padding: .7em .8em; display: flex; flex-direction: column; gap: .2em; }
+.stat .num { font-size: 2.6em; font-weight: 800; line-height: 1.05; color: var(--accent); letter-spacing: -1px; }
+.stat .num b { color: inherit; }
+.stat .cap { font-size: .85em; line-height: 1.35; color: var(--muted); }
+
+.cols { display: grid; gap: 24px; grid-template-columns: repeat(var(--cols, 3), 1fr); align-items: stretch; }
+.cols.n1 { --cols: 1; } .cols.n2 { --cols: 2; } .cols.n4 { --cols: 2; } .cols.n5 { --cols: 5; } .cols.n6 { --cols: 3; } .cols.n8 { --cols: 4; }
+.card { background: var(--card); border: 2px solid var(--line); border-radius: 18px; padding: .8em .9em; display: flex; flex-direction: column; gap: .4em; font-size: .9em; }
+.card.hot { border: 3px solid var(--accent); }
+.card h3 { font-size: 1.15em; font-weight: 700; color: var(--ink); line-height: 1.25; }
+.card .content, .card p, .card li { color: var(--muted); }
+
+.note { background: #FFF6E0; border: 2px solid #F0D99A; border-radius: 16px; padding: .6em .9em; color: var(--ink); font-size: .9em; }
+.note p + p { margin-top: .3em; }
+.big { font-size: 1.5em; line-height: 1.3; color: var(--ink); font-weight: 600; }
+
+table { width: 100%; border-collapse: separate; border-spacing: 0; font-size: .78em; background: var(--card); border: 2px solid var(--line); border-radius: 16px; overflow: hidden; }
+th { background: var(--band); color: var(--ink); text-align: left; font-weight: 700; padding: .45em .7em; }
+td { padding: .42em .7em; border-top: 1px solid var(--line); vertical-align: top; color: var(--ink); line-height: 1.35; }
+td.ok { background: var(--ok-bg); color: var(--ok); }
+td.part { background: var(--part-bg); color: var(--part); }
+td.no { background: var(--no-bg); color: var(--no); }
+
+.slide footer { position: absolute; left: 120px; right: 120px; bottom: 48px; display: flex; justify-content: space-between; font-size: 22px; color: var(--soft); }
+
+.slide.dark, .slide.cover { background: var(--dark); color: var(--dark-ink); }
+.slide.dark .kicker, .slide.cover .kicker { color: var(--gold); }
+.slide.dark .content, .slide.dark .content b, .slide.dark .content p.lead { color: var(--dark-ink); }
+.slide.dark .content { color: #DDE3EA; }
+.slide.dark footer { color: var(--dark-muted); }
+.slide.dark .card, .slide.dark .stat { background: #243041; border-color: #33415A; }
+.slide.dark .card h3 { color: var(--dark-ink); }
+.slide.dark .card p, .slide.dark .card li, .slide.dark .stat .cap { color: #C9D1DC; }
+.slide.dark .stat .num { color: var(--gold); }
+.slide.dark .card.hot { border-color: var(--gold); }
+
+.slide.cover { justify-content: center; padding: 120px 160px; }
+.cover-wrap { display: flex; flex-direction: column; gap: 36px; max-width: 1500px; }
+.slide.cover h1 { font-size: 104px; font-weight: 800; line-height: 1.05; letter-spacing: -2px; }
+.slide.cover .content { color: #DDE3EA; font-size: 36px; flex: none; }
+.slide.cover .content b { color: var(--gold); }
+
+.notes { display: none; }
+
+.bar { position: fixed; left: 0; right: 0; bottom: 0; height: 4px; background: rgba(255,255,255,.08); }
+.progress { height: 100%; width: 0; background: var(--accent); transition: width .2s; }
+.controls { position: fixed; right: 16px; bottom: 14px; display: flex; gap: 6px; align-items: center; font: 600 14px 'Be Vietnam Pro', Arial, sans-serif; opacity: .35; transition: opacity .2s; }
+.controls:hover, body.show-notes .controls { opacity: 1; }
+.controls button, .controls a { background: #243041; color: #F7F5F0; border: 1px solid #33415A; border-radius: 8px; height: 32px; min-width: 32px; padding: 0 10px; cursor: pointer; font: inherit; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; }
+.controls .counter { color: #DDE3EA; padding: 0 6px; }
+.notes-panel { display: none; position: fixed; left: 0; right: 0; bottom: 0; max-height: 34vh; overflow: auto; background: rgba(16,21,28,.96); color: #F7F5F0; padding: 18px 24px 56px; font: 400 17px/1.55 'Be Vietnam Pro', Arial, sans-serif; border-top: 2px solid var(--accent); }
+body.show-notes .notes-panel { display: block; }
+
+@media print {
+  @page { size: 1920px 1080px; margin: 0; }
+  html, body { overflow: visible; height: auto; background: #fff; }
+  .viewport { position: static; display: block; }
+  .deck { transform: none !important; width: 1920px; height: auto; }
+  .slide { position: relative; visibility: visible; opacity: 1; page-break-after: always; break-after: page; }
+  .bar, .controls, .notes-panel { display: none !important; }
+}
+</style>
+</head>
+<body>
+<div class="viewport"><div class="deck">
+<section class="slide cover" id="s1" data-title="Bán ERP cho khách ngoài: cần gì để làm được"><div class="cover-wrap"><p class="kicker">Bản ngắn · 20 trang</p><h1>Bán ERP cho khách ngoài: cần gì để làm được</h1><div class="content"><p>Những khó khăn kỹ thuật phải giải trước khi bán — mỗi ý kèm <b>số liệu đo trên chính hệ thống đang chạy</b>.</p></div></div><aside class="notes">Bản ngắn, khoảng 20 phút. Mục tiêu buổi này không phải bàn "có nên bán hay không", mà là "muốn bán được thì phải làm thêm những gì". Mọi con số đều đo trên hệ thống hiện tại; tài liệu đầy đủ có nguồn đo của từng con số.</aside></section>
+<section class="slide default" id="s2" data-title="Mục tiêu chung và mô hình đang đề xuất"><header><p class="kicker">Mở đầu</p><h2>Mục tiêu chung và mô hình đang đề xuất</h2></header><div class="content"><p class="lead">Mục tiêu: <b>xây được một sản phẩm đáp ứng nhu cầu của nhiều khách hàng</b>. Câu hỏi hôm nay là "làm thế nào", không phải "có nên".</p>
+<div class="cols n2"><div class="card"><h3>Mô hình đang đề xuất — phương án S</h3><ul><li>Khách gửi yêu cầu bằng chữ, ảnh → cấu hình → sửa mã nếu cần → triển khai</li><li><b>Một bộ mã</b>; bản mới như Windows, khách <b>tự chọn</b> nâng cấp</li><li><b>File cấu hình</b> quyết định tính năng của từng khách</li><li>Cài ở máy khách hoặc máy thuê; <b>khách tự quản DB</b></li><li>Không giao mã nguồn, <b>làm rối mã</b></li></ul></div><div class="card hot"><h3>Cách đọc các trang sau</h3><ul><li>Mỗi khó khăn có mã <b>K-xx</b>, tra được trong tài liệu đầy đủ (159 mục)</li><li>Mỗi ý có <b>số liệu đo trên chính hệ thống đang chạy</b></li><li>Cuối bộ: so sánh S với ba con đường ngành đã đi, và những câu cần trả lời</li></ul></div></div></div><footer><span>Bán ERP cho khách ngoài · bản ngắn</span><span>2 / 20</span></footer><aside class="notes">Đây không phải tài liệu phản đối ý tưởng. Hệ thống chạy tốt cho một công ty; câu hỏi là cần thêm gì để chạy tốt cho nhiều công ty khác nhau.</aside></section>
+<section class="slide default" id="s3" data-title="Năm điều kiện thuận lợi hôm nay — cả năm sẽ mất khi bán"><header><p class="kicker">Mở đầu</p><h2>Năm điều kiện thuận lợi hôm nay — cả năm sẽ mất khi bán</h2></header><div class="content"><table><thead><tr><th>Điều kiện hôm nay</th><th>Số liệu</th><th>Khi bán cho khách</th></tr></thead><tbody><tr><td>Được <b>xoá sạch dữ liệu làm lại</b> bất cứ lúc nào</td><td>Mỗi lần kiểm tra đầy đủ = <b>xoá sạch DB 2 lần</b></td><td>Dữ liệu khách không bao giờ được xoá</td></tr><tr><td><b>Một</b> phiên bản đang chạy</td><td>Cao điểm <b>140</b> lần thay đổi mã <b>trong 1 ngày</b></td><td>Mỗi khách dừng ở một phiên bản khác nhau</td></tr><tr><td><b>Một</b> khách, ngồi cùng nhà, chịu được lỗi</td><td><b>37%</b> lần thay đổi mã là sửa lỗi</td><td>Nhiều khách, ở xa, không chịu được lỗi</td></tr><tr><td>Yêu cầu đổi liên tục, sửa ngay</td><td><b>~1.920</b> quyết định trong ~2 tháng; <b>≥20</b> bị đảo</td><td>Mỗi lần đổi phải qua phân loại, kiểm thử, nghiệm thu</td></tr><tr><td>Người viết mã cũng vận hành, <b>thấy mọi dữ liệu và máy chủ</b></td><td><b>3</b> môi trường do chính mình giữ</td><td>Không thấy dữ liệu khách, không giữ máy chủ, mã bị làm rối</td></tr></tbody></table></div><footer><span>Bán ERP cho khách ngoài · bản ngắn</span><span>3 / 20</span></footer><aside class="notes">Hệ thống chạy tốt hôm nay không phải ngẫu nhiên — nó dựa vào năm điều kiện này. Khi bán, cả năm điều kiện đều biến mất cùng lúc, nên tốc độ và cách làm hiện tại không mang sang được nguyên vẹn.</aside></section>
+<section class="slide default" id="s4" data-title="Thêm một ô, thêm một bước duyệt — đều phải sửa mã cho mọi khách"><header><p class="kicker">Một bộ mã cho nhiều khách</p><h2>Thêm một ô, thêm một bước duyệt — đều phải sửa mã cho mọi khách</h2></header><div class="content"><h4>Thêm một ô vào biểu mẫu</h4>
+<div class="stats n3"><div class="stat"><div class="num">66</div><div class="cap">bảng từ điển khai cột cứng trong mã</div></div><div class="stat"><div class="num">~243</div><div class="cap">chỗ đọc ô theo vị trí cột</div></div><div class="stat"><div class="num">0</div><div class="cap">bảng khai báo trường theo công ty</div></div></div>
+<h4>Thêm một bước duyệt</h4>
+<div class="stats n3"><div class="stat"><div class="num">38</div><div class="cap">luồng trạng thái (bước duyệt) cố định trong DB</div></div><div class="stat"><div class="num">8+</div><div class="cap">hàm tính chuỗi duyệt riêng, mỗi module một kiểu</div></div><div class="stat"><div class="num">0</div><div class="cap">chỗ khai báo quy trình theo công ty</div></div></div>
+<p class="lead">Ví dụ: tiếp nhận nhân sự mới luôn đúng <b>2</b> bước duyệt; nghỉ phép chỉ có <b>4</b> loại; ≤ 3 ngày thì 1 cấp — giống nhau cho mọi công ty.</p></div><footer><span>Bán ERP cho khách ngoài · bản ngắn</span><span>4 / 20</span></footer><aside class="notes">Hai khách dùng cùng chức năng, khách B chỉ muốn thêm một ô hay công ty X thêm một bước duyệt: hôm nay đều là sửa mã và chuyển đổi DB cho mọi khách. Ba tính năng nền tảng (hai trang sau) là cách gỡ đúng hai ví dụ này.</aside></section>
+<section class="slide default" id="s5" data-title="Hai công ty có số cấp tổ chức khác nhau"><header><p class="kicker">Phần 4 · Ví dụ thứ ba</p><h2>Hai công ty có số cấp tổ chức khác nhau</h2></header><div class="content"><table><thead><tr><th>Công ty</th><th>Cây tổ chức thật</th><th>Hệ thống hiện tại</th></tr></thead><tbody><tr><td>Nhỏ</td><td>Công ty → phòng → nhân viên (không có trưởng nhóm)</td><td class="part">🟡 Chạy <b>một phần</b> — chuỗi duyệt bỏ qua được ghế trống, nhưng nhãn, cột "Trưởng nhóm", bước giao chỉ tiêu cho nhóm vẫn hiện</td></tr><tr><td>Giống công ty mình</td><td>Công ty → phòng → trưởng nhóm → nhân viên</td><td class="ok">✅ Đúng khuôn</td></tr><tr><td>Tập đoàn</td><td>Tổng công ty → vùng → công ty con → khối/phòng → nhóm → nhân viên</td><td class="no">❌ Không có chỗ đặt "vùng"; công ty không có công ty mẹ; phòng không có phòng con</td></tr></tbody></table>
+<div class="stats n3"><div class="stat"><div class="num">0</div><div class="cap">cột "đơn vị cha" ở bảng công ty và bảng phòng ban ⇒ tối đa 2 tầng đơn vị</div></div><div class="stat"><div class="num">5 + 7</div><div class="cap">vai nghiệp vụ cố định trong DB + bậc vị trí cố định trong mã</div></div><div class="stat"><div class="num">40–72</div><div class="cap">tệp mã gọi thẳng tên từng vai (CEO 72 · Trưởng nhóm 40)</div></div></div></div><footer><span>Bán ERP cho khách ngoài · bản ngắn</span><span>5 / 20</span></footer><aside class="notes">Thêm một cấp không phải thêm một dòng dữ liệu, mà là sửa cấu trúc DB, hàm tính cấp trên – cấp dưới, phạm vi dữ liệu, chuỗi duyệt, giao và cộng dồn chỉ tiêu, và mọi màn có cột theo cấp — cho mọi khách (K-52).</aside></section>
+<section class="slide default" id="s6" data-title="Ba tính năng nền tảng phải xây, rồi chuyển từng module sang"><header><p class="kicker">Phần 4 · Phải xây gì</p><h2>Ba tính năng nền tảng phải xây, rồi chuyển từng module sang</h2></header><div class="content"><div class="cols n3"><div class="card"><h3>① Trường dữ liệu theo khách</h3><p>Khai báo trường theo công ty; biểu mẫu và kiểm tra dữ liệu tự sinh; trường mới hiện ở danh sách, tìm kiếm, báo cáo, xuất Excel.</p></div><div class="card"><h3>② Bộ máy quy trình duyệt theo khách</h3><p>Chuỗi bước khai trong DB theo công ty và loại hồ sơ; hồ sơ lưu "bước n trên N"; hồ sơ đang dở chạy tiếp theo quy trình cũ khi quy trình đổi.</p></div><div class="card"><h3>③ Cây đơn vị do khách khai</h3><p>Số cấp, tên cấp, đơn vị cha – con tuỳ khách; cấp trên, phạm vi dữ liệu, chuỗi duyệt, cộng dồn chỉ tiêu đều đọc từ cây.</p></div></div>
+<div class="note"><p>📊 <b>25</b> nhóm tính năng · <b>38</b> luồng trạng thái · <b>8+</b> cách tính chuỗi duyệt gom về một bộ máy · <b>~243</b> chỗ đọc theo vị trí cột · <b>5</b> vai và <b>2</b> tầng đơn vị cố định phải thành cây do khách khai (K-55).</p></div></div><footer><span>Bán ERP cho khách ngoài · bản ngắn</span><span>6 / 20</span></footer><aside class="notes">Đây không phải chỉnh vài form, mà là làm lại tầng dưới của mọi module. Nhưng đây cũng chính là thứ biến hệ thống từ "phần mềm của một công ty" thành "sản phẩm cho nhiều công ty".</aside></section>
+<section class="slide default" id="s7" data-title="Nâng cấp hỏng thì không có nút "quay lại""><header><p class="kicker">Phần 1 · Dữ liệu của khách</p><h2>Nâng cấp hỏng thì không có nút "quay lại"</h2></header><div class="content"><div class="stats n3"><div class="stat"><div class="num">0/89</div><div class="cap">bước chuyển đổi có đường lùi (K-01)</div></div><div class="stat"><div class="num">24 giờ</div><div class="cap">dữ liệu có thể mất — backup 1 lần/ngày</div></div><div class="stat"><div class="num">88</div><div class="cap">bước phải chạy liên tiếp nếu khách cài bản đầu, nay mới nâng (K-02)</div></div></div>
+<ul><li><b>Máy phát triển luôn "đạt", máy thật mới hỏng</b> — đổi tên một giá trị lựa chọn đã làm máy thật hỏng khi nâng cấp; lỗi loại này ghi <b>6</b> lần (K-03).</li><li><b>Dữ liệu mỗi khách một kiểu</b> — riêng lỗi số kiểu Việt <code>319,87</code> bị đọc thành 0 đã vấp <b>5</b> lần (K-04).</li><li><b>Lỗi chỉ lộ trên dữ liệu thật</b> — chạy tác vụ thật trên bản sao dữ liệu thật mới lộ <b>140</b> dòng bị khoá nhầm (K-05).</li></ul></div><footer><span>Bán ERP cho khách ngoài · bản ngắn</span><span>7 / 20</span></footer><aside class="notes">"Khách tự chọn nâng cấp" nghĩa là có khách đứng yên hai năm rồi nhảy thẳng lên bản mới nhất, chạy một chuỗi bước chuyển đổi chưa ai chạy thử trên dữ liệu mình không được nhìn thấy.</aside></section>
+<section class="slide dark" id="s8" data-title="Lỗ hổng bảo mật không chờ khách sẵn sàng"><header><p class="kicker">Phần 2 · "Như Windows"</p><h2>Lỗ hổng bảo mật không chờ khách sẵn sàng</h2></header><div class="content"><div class="stats n3"><div class="stat"><div class="num">10/10</div><div class="cap">điểm nghiêm trọng — CVE-2025-55182 (12/2025)</div></div><div class="stat"><div class="num">1</div><div class="cap">lần gửi yêu cầu là chiếm được máy chủ, không cần đăng nhập</div></div><div class="stat"><div class="num">7</div><div class="cap">dòng phiên bản Next.js phải ra bản vá riêng</div></div></div>
+<p class="lead">Lỗ hổng <b>đã bị khai thác thật</b>, và hệ thống đang dùng đúng nền tảng này. Khách "chọn không nâng cấp" thì máy chủ của họ mở toang.</p>
+<ul><li>Phải chọn: <b>ép</b> cập nhật (tức là không còn "khách tự chọn") hoặc <b>vá ngược</b> cho từng phiên bản cũ (K-19).</li><li>Windows <b>ép</b> cập nhật bảo mật mỗi tháng, và không phải chuyển đổi dữ liệu kế toán, kho, nhân sự mỗi lần nâng (K-21).</li></ul></div><footer><span>Bán ERP cho khách ngoài · bản ngắn</span><span>8 / 20</span></footer><aside class="notes">Đây là ví dụ thật, không phải giả định. Một nền tảng phổ biến bị lỗ hổng 10/10, chỉ một yêu cầu là chiếm máy chủ. Nếu lúc đó mình có 10 khách ở 10 phiên bản, mình phải vá 10 lần, hoặc ép tất cả nâng cấp.</aside></section>
+<section class="slide default" id="s9" data-title=""Khách gửi → làm → triển khai" bỏ qua 9/12 bước"><header><p class="kicker">Quy trình</p><h2>"Khách gửi → làm → triển khai" bỏ qua 9/12 bước</h2></header><div class="content"><div class="stats n4"><div class="stat"><div class="num">12</div><div class="cap">bước giữa "khách gửi" và "triển khai"</div></div><div class="stat"><div class="num">3</div><div class="cap">bước mô hình đang nhắc tới: tiếp nhận, phát triển, triển khai</div></div><div class="stat"><div class="num">0</div><div class="cap">kiểm thử viên · 0 mẫu biên bản nghiệm thu · 0 tiêu chí viết trước</div></div><div class="stat"><div class="num">8 + 6</div><div class="cap">vai cần ở phía mình + vai cần ở phía khách</div></div></div>
+<p class="lead">Bỏ bước nào thì rủi ro của bước đó dồn xuống <b>lúc nghiệm thu</b> — đúng lúc tốn kém nhất để sửa. Ngay với khách nội bộ, yêu cầu đã qua <b>≥5</b> phiên bản bản vẽ rồi bỏ hẳn cách giao bằng bản vẽ.</p></div><footer><span>Bán ERP cho khách ngoài · bản ngắn</span><span>9 / 20</span></footer><aside class="notes">Chín bước bị bỏ qua gồm làm rõ, phân loại, ước lượng, chốt tiêu chí nghiệm thu, đánh giá ảnh hưởng tới khách khác, kiểm thử độc lập, nghiệm thu, đào tạo, hỗ trợ sau bàn giao.</aside></section>
+<section class="slide default" id="s10" data-title="46 loại kiểm thử một ERP thương mại cần: 29 loại đang là 0"><header><p class="kicker">Phần 5 · Kiểm thử</p><h2>46 loại kiểm thử một ERP thương mại cần: 29 loại đang là 0</h2></header><div class="content"><table><thead><tr><th>Nhóm</th><th>Số loại</th><th>✅ Có</th><th>🟡 Một phần</th><th>❌ Chưa có</th></tr></thead><tbody><tr><td>Phát hành &amp; nâng cấp</td><td>6</td><td>0</td><td>1</td><td>5</td></tr><tr><td>Hiệu năng &amp; độ bền</td><td>7</td><td>0</td><td>0</td><td>7</td></tr><tr><td>Bảo mật</td><td>8</td><td>0</td><td>2</td><td>6</td></tr><tr><td>Chức năng</td><td>13</td><td>4</td><td>3</td><td>6</td></tr><tr><td>Con người (nghiệm thu, dễ dùng)</td><td>2</td><td>0</td><td>1</td><td>1</td></tr><tr><td>Riêng của ERP</td><td>10</td><td>0</td><td>6</td><td>4</td></tr><tr><td><b>Tổng</b></td><td><b>46</b></td><td><b>4</b></td><td><b>13</b></td><td><b>29</b></td></tr></tbody></table>
+<div class="note"><p>Toàn bộ <b>7</b> loại hiệu năng và <b>6/8</b> loại bảo mật đang là 0. <b>0/10</b> loại riêng của ERP có đủ (K-73).</p></div></div><footer><span>Bán ERP cho khách ngoài · bản ngắn</span><span>10 / 20</span></footer><aside class="notes">Bảng chi tiết từng loại có ở bản đầy đủ và tài liệu. Loại quan trọng nhất phải có trước khách đầu tiên: nâng cấp từ mọi bản cũ, backup &amp; khôi phục, kiểm thử tải, E2E, kiểm thử đồng thời.</aside></section>
+<section class="slide default" id="s11" data-title="AI viết nhanh hơn người đọc"><header><p class="kicker">Phần 6 · Mã do AI viết</p><h2>AI viết nhanh hơn người đọc</h2></header><div class="content"><div class="stats n4"><div class="stat"><div class="num">78%</div><div class="cap">lần thay đổi mã có AI viết cùng (338/434)</div></div><div class="stat"><div class="num">10%</div><div class="cap">số lần thay đổi lớn hơn 15.000 dòng</div></div><div class="stat"><div class="num">~143.000</div><div class="cap">dòng mã, 1.148 tệp</div></div><div class="stat"><div class="num">37%</div><div class="cap">lần thay đổi là sửa lỗi (159/434)</div></div></div>
+<ul><li>Trung vị <b>134</b> dòng mỗi lần — nhưng không ai review nổi một thay đổi 15.000 dòng (K-83).</li><li>Nhóm lớn nhất: Hoạch định <b>23.600</b> dòng · Thực thi <b>15.000</b> · Từ điển <b>13.000</b> · Nhân sự <b>10.200</b>; phần dùng chung <b>42.800</b> (K-87).</li><li>Với khách ngoài, mỗi lần sửa lỗi là một bản vá phải đóng gói, kiểm, giao, cài (K-88).</li></ul></div><footer><span>Bán ERP cho khách ngoài · bản ngắn</span><span>11 / 20</span></footer><aside class="notes">Khối lượng mã vượt khả năng đọc của con người. Đây không phải lời chê AI — AI giúp xây nhanh — nhưng trước khi giao cho khách, phải có người chịu trách nhiệm về những gì được giao.</aside></section>
+<section class="slide default" id="s12" data-title="N máy chủ ở N khách, chưa có người chuyên nghiệp"><header><p class="kicker">Vận hành · bảo mật</p><h2>N máy chủ ở N khách, chưa có người chuyên nghiệp</h2></header><div class="content"><div class="stats n4"><div class="stat"><div class="num">0</div><div class="cap">DevOps · 0 chuyên gia bảo mật · 0 lần kiểm thử xâm nhập</div></div><div class="stat"><div class="num">1/3</div><div class="cap">tầng bên mình kiểm soát — ứng dụng; máy chủ và mạng là của khách</div></div><div class="stat"><div class="num">36/104</div><div class="cap">bảng mang trực tiếp mã công ty — cách ly dữ liệu nằm trong từng câu đọc</div></div><div class="stat"><div class="num">4 → 7–9</div><div class="cap">dịch vụ mỗi khách khi thêm giám sát, hàng đợi, bộ nhớ đệm</div></div></div>
+<p class="lead">Phần lớn việc vận hành, bảo mật là <b>dễ với người có nghề</b> — dùng công cụ là thấy. Cái khó là <b>không có người làm</b>, và khi bán thì mỗi việc làm lại ở <b>N</b> nơi. Khi khách báo lỗi, mình <b>không thấy</b> dữ liệu, <b>không giữ</b> máy chủ.</p></div><footer><span>Bán ERP cho khách ngoài · bản ngắn</span><span>12 / 20</span></footer><aside class="notes">Lo ngại bảo mật có câu trả lời đầu tiên rất rõ: cần người. Những việc khó thật nằm trong cách hệ thống được xây: cách ly dữ liệu giữa công ty, mã AI chưa ai soi, vá cho mọi phiên bản.</aside></section>
+<section class="slide default" id="s13" data-title="Dữ liệu hôm nay chỉ 3,7 MB — và có cả một bậc thang cách xử lý"><header><p class="kicker">Lo ngại · "Dữ liệu nhiều làm chậm, nên cắt dữ liệu từng năm"</p><h2>Dữ liệu hôm nay chỉ 3,7 MB — và có cả một bậc thang cách xử lý</h2></header><div class="content"><div class="stats n2"><div class="stat"><div class="num">3,7 MB</div><div class="cap">toàn bộ dữ liệu production, ~6.760 dòng (bản sao 21/09/2026)</div></div><div class="stat"><div class="num">~9.000×</div><div class="cap">khách lớn 60 triệu dòng so với hôm nay — đó mới là lúc phải lo</div></div></div>
+<table><thead><tr><th>Bậc</th><th>Cách làm</th><th>Khi nào cần</th></tr></thead><tbody><tr><td>0</td><td>Không làm gì</td><td>Khách nhỏ, trong nhiều năm</td></tr><tr><td>1</td><td>Phân trang + chỉ mục đúng chỗ</td><td><b>Ngay bây giờ</b>, mọi khách</td></tr><tr><td>2</td><td>Bảng tổng hợp sẵn cho báo cáo, bộ nhớ đệm</td><td>Khách vừa</td></tr><tr><td>3</td><td><b>Chia bảng theo năm ngay trong DB</b> — dữ liệu vẫn đủ</td><td>Khách lớn · bản đúng của "cắt từng năm"</td></tr><tr><td>4</td><td>Năm cũ sang kho lưu trữ chỉ-đọc</td><td>Khách rất lớn</td></tr><tr><td>5</td><td>Bản sao DB cho báo cáo, nhiều máy ứng dụng, hàng đợi</td><td>Hàng chục nghìn người dùng</td></tr></tbody></table></div><footer><span>Bán ERP cho khách ngoài · bản ngắn</span><span>13 / 20</span></footer><aside class="notes">"Cắt dữ liệu từng năm" có tác dụng phụ: báo cáo nhiều năm gãy, truy vết lô thuốc khi thu hồi bị đứt, lịch sử nhân sự mất, nhiều loại dữ liệu theo luật phải giữ nhiều năm. Bậc 3 là phiên bản đúng của ý tưởng đó. Hiện hệ thống ở bậc 0; bậc 1 mới làm ở 3 chỗ.</aside></section>
+<section class="slide default" id="s14" data-title="Luật bảo vệ dữ liệu cá nhân đã có hiệu lực — không phải lựa chọn"><header><p class="kicker">Luật · dữ liệu cá nhân</p><h2>Luật bảo vệ dữ liệu cá nhân đã có hiệu lực — không phải lựa chọn</h2></header><div class="content"><div class="cols n3"><div class="card"><h3>Bắt buộc theo luật</h3><p>Luật Bảo vệ dữ liệu cá nhân 91/2025 (từ 01/01/2026) · Luật An ninh mạng 116/2025 (từ 01/07/2026). Phạt tới <b>5%</b> doanh thu năm trước.</p></div><div class="card"><h3>Khách lớn sẽ hỏi</h3><p>ISO/IEC 27001:2022 — chứng nhận cách công ty mình quản lý an toàn thông tin, <b>93</b> biện pháp, đánh giá mỗi năm.</p></div><div class="card"><h3>Nên tự làm trước</h3><p>OWASP ASVS 5.0 — bảng kiểm bảo mật ứng dụng miễn phí, ~350 yêu cầu. SOC 2, SOX, GDPR: chỉ khi có khách nước ngoài.</p></div></div>
+<div class="note"><p>📊 Bán ERP thì mình thành <b>bên xử lý dữ liệu cá nhân</b> cho khách: <b>0</b> chức năng đồng ý / xem / xoá dữ liệu · <b>97</b> khoá ngoại trỏ tới nhân viên (khó "xoá dữ liệu của tôi") · tệp lưu trên Google Drive có thể bị coi là chuyển dữ liệu ra nước ngoài.</p></div></div><footer><span>Bán ERP cho khách ngoài · bản ngắn</span><span>14 / 20</span></footer><aside class="notes">Các mục luật lấy từ bài phân tích của công ty luật, kiểm toán; cần luật sư đối chiếu văn bản gốc.</aside></section>
+<section class="slide default" id="s15" data-title="Cổng thanh toán và hoá đơn điện tử"><header><p class="kicker">Tích hợp</p><h2>Cổng thanh toán và hoá đơn điện tử</h2></header><div class="content"><div class="stats n3"><div class="stat"><div class="num">0/5</div><div class="cap">cổng thanh toán phổ biến đã tích hợp</div></div><div class="stat"><div class="num">0</div><div class="cap">tích hợp hoá đơn điện tử</div></div><div class="stat"><div class="num">0</div><div class="cap">đường nhận thông báo từ bên ngoài</div></div></div>
+<ul><li><b>Cổng phải gọi ngược vào máy chủ của khách</b> ⇒ máy khách phải mở ra internet, có tên miền, HTTPS.</li><li><b>Cổng đổi cách kết nối là khách phải nâng cấp</b> — không còn "khách tự chọn nâng cấp".</li><li><b>Tiền phải đúng tới từng đồng</b>: thông báo trùng, giao dịch treo, hoàn tiền một phần, đối soát cuối ngày.</li><li><b>Luật thuế đổi</b> (Nghị định 70/2025) là mọi khách phải nâng cấp đúng hạn.</li></ul></div><footer><span>Bán ERP cho khách ngoài · bản ngắn</span><span>15 / 20</span></footer><aside class="notes">Khách bán hàng online sẽ đòi những thứ này ngay từ đầu. Mỗi tích hợp có lịch thay đổi riêng của bên ngoài, chồng lên lịch phát hành của mình.</aside></section>
+<section class="slide default" id="s16" data-title="Ba cấp khách, tám vai, chưa vai nào có người riêng"><header><p class="kicker">Con người</p><h2>Ba cấp khách, tám vai, chưa vai nào có người riêng</h2></header><div class="content"><div class="cols n3"><div class="card"><h3>Cấp nhỏ · &lt; 100 người</h3><p>1 máy, ứng dụng và DB chung. Dữ liệu không phải vấn đề.</p></div><div class="card"><h3>Cấp vừa · 100 – 2.000</h3><p>DB tách máy riêng. Lo báo cáo chậm, giám sát.</p></div><div class="card hot"><h3>Cấp lớn · &gt; 2.000</h3><p>Nhiều máy, bản sao DB, hàng đợi. Lo tải, dữ liệu lớn.</p></div></div>
+<div class="stats n3"><div class="stat"><div class="num">8</div><div class="cap">vai kỹ thuật cần: DBA, kiểm thử, kiến trúc sư, review mã, phân tích nghiệp vụ, DevOps, hỗ trợ, bảo mật</div></div><div class="stat"><div class="num">0</div><div class="cap">vai đang có người riêng</div></div><div class="stat"><div class="num">1</div><div class="cap">cách cài hiện có (cấp nhỏ); 0 lần kiểm thử tải</div></div></div></div><footer><span>Bán ERP cho khách ngoài · bản ngắn</span><span>16 / 20</span></footer><aside class="notes">AI giúp mỗi người làm nhanh hơn, nhưng không thay được người ký "bản này đủ an toàn để giao" ở từng khâu.</aside></section>
+<section class="slide default" id="s17" data-title="Một bộ mã phục vụ nhiều khách: ngành đã đi ba con đường"><header><p class="kicker">Bốn phương án</p><h2>Một bộ mã phục vụ nhiều khách: ngành đã đi ba con đường</h2></header><div class="content"><div class="cols n4"><div class="card hot"><h3>S — đang đề xuất</h3><p>Một bộ mã + file cấu hình; sửa mã khi cấu hình không đủ; cài ở khách; khách tự chọn nâng cấp.</p></div><div class="card"><h3>A — một bộ mã cho mọi khách</h3><p>Khách theo phần mềm; khác biệt chỉ qua cấu hình. Ví dụ: MISA AMIS, Base.vn, Salesforce.</p></div><div class="card"><h3>B — mỗi khách một bộ mã</h3><p>Phần mềm theo khách, chiều mọi yêu cầu. Ví dụ: đối tác Navision trước 2018, công ty làm phần mềm theo dự án.</p></div><div class="card"><h3>C — lõi chung + gói mở rộng</h3><p>Lõi không ai sửa cho một khách; phần riêng là gói cài thêm. Ví dụ: Business Central, SAP "clean core", Odoo kèm module riêng.</p></div></div></div><footer><span>Bán ERP cho khách ngoài · bản ngắn</span><span>17 / 20</span></footer><aside class="notes">Ba con đường A, B, C đều có công ty thành công. Câu hỏi là phương án S đang gần con đường nào, và có kế thừa được ưu điểm của con đường đó không.</aside></section>
+<section class="slide dark" id="s18" data-title="Phương án S dùng mã của A, nhưng chịu chi phí của B"><header><p class="kicker">Bốn phương án</p><h2>Phương án S dùng mã của A, nhưng chịu chi phí của B</h2></header><div class="content"><p class="lead">"Một bộ mã, file cấu hình quyết định" là cách của A. Nhưng "cài ở máy khách, khách tự chọn nâng cấp" làm <b>mỗi khách dừng ở một phiên bản</b> — mỗi phiên bản còn chạy là một bộ mã phải vá, phải hỗ trợ: tức là B.</p>
+<div class="stats n3"><div class="stat"><div class="num">10</div><div class="cap">khách dừng ở 10 bản khác nhau ⇒ 10 bộ mã phải vá (ra bản mỗi tháng)</div></div><div class="stat"><div class="num">7</div><div class="cap">dòng phiên bản Next.js phải vá trong sự cố 12/2025</div></div><div class="stat"><div class="num">434</div><div class="cap">lần thay đổi mã trong ~2 tháng với 1 khách</div></div></div>
+<p>Khác B ở chỗ các bộ mã đó <b>không sinh ra để chiều khách</b>, mà do khách ngừng nâng cấp vào những lúc khác nhau — nên <b>không chiều khách được như B</b> (K-100).</p></div><footer><span>Bán ERP cho khách ngoài · bản ngắn</span><span>18 / 20</span></footer><aside class="notes">Đây là kết luận quan trọng nhất của phần so sánh. Phương án S gánh chi phí bảo trì của B mà không có lợi thế chiều khách của B, và cần nền tảng của A mà chưa có.</aside></section>
+<section class="slide default" id="s19" data-title="Mỗi phương án là một kiểu công ty khác nhau"><header><p class="kicker">Bốn phương án · tổ chức công ty</p><h2>Mỗi phương án là một kiểu công ty khác nhau</h2></header><div class="content"><table><thead><tr><th></th><th>Đội ngũ cốt lõi</th><th>Ai quyết làm gì tiếp</th><th>Ai làm việc với khách</th><th>Rủi ro tổ chức</th></tr></thead><tbody><tr><td><b>A</b></td><td>Nhóm sản phẩm · nhóm nền tảng · nhóm theo module · kiểm thử tự động · vận hành 24/7 · bảo mật · hỗ trợ 3 tầng</td><td>Quản lý sản phẩm, theo <b>số đông</b> khách</td><td>Đội triển khai: cấu hình, nhập dữ liệu, đào tạo — <b>không sửa mã</b></td><td>Mất khách có quy trình khác chuẩn</td></tr><tr><td><b>B</b></td><td>Mỗi khách một nhóm dự án · người phụ trách khách · đội bảo trì theo hợp đồng · nhóm nhỏ giữ thư viện chung</td><td>Từng khách, cho bộ mã của họ</td><td>Chính nhóm dự án</td><td>Đội bảo trì phình theo số khách; người nghỉ mang theo hiểu biết</td></tr><tr><td><b>C</b></td><td>Như A cho lõi · nhóm (hoặc đối tác) làm gói mở rộng · kiến trúc sư giữ "hợp đồng" điểm mở rộng · khâu duyệt gói riêng</td><td>Lõi: quản lý sản phẩm. Gói riêng: khách đặt</td><td>Đội triển khai + nhóm gói mở rộng</td><td>Giữ kỷ luật "không ai sửa lõi cho một khách"</td></tr><tr><td><b>S</b></td><td>Cần <b>cả</b> đội của A <b>và</b> đội của B · cộng đội vận hành từ xa cho N máy chủ không phải của mình</td><td>Chưa rõ</td><td>Chưa rõ — đội cấu hình hay đội sửa mã</td><td>Gánh chi phí của cả A lẫn B</td></tr></tbody></table></div><footer><span>Bán ERP cho khách ngoài · bản ngắn</span><span>19 / 20</span></footer><aside class="notes">Đổi phương án giữa chừng là tái cơ cấu công ty, không chỉ là sửa mã (K-104). Hiện 0/8 vai kỹ thuật có người riêng.</aside></section>
+<section class="slide dark" id="s20" data-title="Chọn hướng trước — rồi trả lời năm câu"><header><p class="kicker">Kết</p><h2>Chọn hướng trước — rồi trả lời năm câu</h2></header><div class="content"><div class="cols n2"><div class="card"><h3>Chọn hướng trước khi viết thêm module</h3><p>Chọn A hoặc C ⇒ mọi module mới phải viết trên ba tính năng nền tảng. Chọn B ⇒ phí và đội bảo trì theo số khách phải có trong báo giá đầu tiên.</p></div><div class="card hot"><h3>Năm câu cần trả lời</h3><ol><li>Nâng cấp hỏng, dữ liệu mất — xử lý thế nào?</li><li>Lỗ hổng như 12/2025: ép nâng cấp hay vá ngược?</li><li>Ai kiểm thử, ai nghiệm thu, theo tiêu chí nào?</li><li>Làm cho cỡ khách nào trước?</li><li>Ai giữ 8 vai kỹ thuật?</li></ol></div></div></div><footer><span>Bán ERP cho khách ngoài · bản ngắn</span><span>20 / 20</span></footer><aside class="notes">Tài liệu đầy đủ có 159 khó khăn, mỗi mục kèm số liệu đo trên hệ thống hiện tại. Bản 40 trang và bản đầy đủ đi sâu từng phần.</aside></section>
+</div></div>
+<div class="bar"><div class="progress"></div></div>
+<nav class="controls">
+  <a href="../index.html" class="home" data-tip="Về trang chính">⌂</a>
+  <button class="prev" aria-label="Trang trước">‹</button>
+  <span class="counter"></span>
+  <button class="next" aria-label="Trang sau">›</button>
+  <button class="notes-toggle" aria-label="Lời trình bày">Ghi chú</button>
+</nav>
+<div class="notes-panel"><div class="notes-text"></div></div>
+<script>(function () {
+  var deck = document.querySelector('.deck');
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var counter = document.querySelector('.counter');
+  var progress = document.querySelector('.progress');
+  var notesText = document.querySelector('.notes-text');
+  var current = 0;
+
+  function fit() {
+    var s = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
+    deck.style.transform = 'scale(' + s + ')';
+  }
+
+  function shrinkToFit(slide) {
+    var content = slide.querySelector('.content');
+    if (!content || slide.classList.contains('cover')) return;
+    var f = 1.25;
+    slide.style.setProperty('--fit', f);
+    var guard = 0;
+    while (content.scrollHeight > content.clientHeight + 2 && f > 0.55 && guard++ < 40) {
+      f -= 0.03;
+      slide.style.setProperty('--fit', f.toFixed(2));
+    }
+  }
+
+  function show(n, push) {
+    current = Math.max(0, Math.min(slides.length - 1, n));
+    slides.forEach(function (s, i) { s.classList.toggle('active', i === current); });
+    counter.textContent = (current + 1) + ' / ' + slides.length;
+    progress.style.width = ((current + 1) / slides.length * 100) + '%';
+    var notes = slides[current].querySelector('.notes');
+    notesText.innerHTML = notes && notes.innerHTML ? notes.innerHTML : '<i>Trang này không có ghi chú.</i>';
+    if (push !== false) history.replaceState(null, '', '#' + (current + 1));
+    document.title = document.title.split(' — ')[0] + ' — ' + (current + 1);
+  }
+
+  function fromHash() {
+    var n = parseInt(location.hash.slice(1), 10);
+    return isNaN(n) ? 0 : n - 1;
+  }
+
+  document.addEventListener('keydown', function (e) {
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    var k = e.key;
+    if (k === 'ArrowRight' || k === 'PageDown' || k === ' ' || k === 'Enter') { show(current + 1); e.preventDefault(); }
+    else if (k === 'ArrowLeft' || k === 'PageUp' || k === 'Backspace') { show(current - 1); e.preventDefault(); }
+    else if (k === 'Home') show(0);
+    else if (k === 'End') show(slides.length - 1);
+    else if (k === 'n' || k === 'N') document.body.classList.toggle('show-notes');
+    else if (k === 'f' || k === 'F') {
+      if (!document.fullscreenElement) document.documentElement.requestFullscreen && document.documentElement.requestFullscreen();
+      else document.exitFullscreen && document.exitFullscreen();
+    }
+  });
+  document.querySelector('.next').addEventListener('click', function () { show(current + 1); });
+  document.querySelector('.prev').addEventListener('click', function () { show(current - 1); });
+  document.querySelector('.notes-toggle').addEventListener('click', function () { document.body.classList.toggle('show-notes'); });
+
+  var x0 = null;
+  document.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; }, { passive: true });
+  document.addEventListener('touchend', function (e) {
+    if (x0 === null) return;
+    var dx = e.changedTouches[0].clientX - x0;
+    if (Math.abs(dx) > 50) show(current + (dx < 0 ? 1 : -1));
+    x0 = null;
+  }, { passive: true });
+
+  window.addEventListener('resize', fit);
+  window.addEventListener('hashchange', function () { show(fromHash(), false); });
+
+  fit();
+  function layout() { slides.forEach(shrinkToFit); }
+  layout();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(layout);
+  show(fromHash(), false);
+})();
+</script>
+</body>
+</html>
