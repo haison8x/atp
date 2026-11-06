@@ -691,7 +691,7 @@ _Bốn phương án · so sánh_
 | Nâng cấp | Khách tự chọn ⇒ nhiều bản song song | Nâng mọi khách cùng lúc | Mỗi lần một dự án — thường **không nâng** | Lõi nâng định kỳ; gói phải theo kịp |
 | Đầu tư trước | Như A **cộng** như B | **Rất lớn** — nền tảng | **Thấp** | **Lớn** — nền tảng + điểm mở rộng |
 | Dòng tiền | Chưa có mô hình | Thuê bao đều | Dự án + phí bảo trì | Thuê bao + dự án gói riêng |
-| Hệ thống hiện tại còn thiếu | Mọi thứ A và B thiếu | 3 tính năng nền tảng, vận hành tập trung | Quy trình quản lý N bộ mã | 3 tính năng nền tảng **và** điểm mở rộng (hiện **0**) |
+| Muốn đi đường này, hệ thống còn phải xây | **Cả hai:** 3 tính năng nền tảng (như A) **và** cách giữ N phiên bản trên N máy khách (như B) | 3 tính năng nền tảng (trường, quy trình, cây tổ chức động) + mình tự vận hành máy chủ cho mọi khách | Cách quản lý N bộ mã: tách mã theo khách, đưa bản vá sang từng bộ, có người hiểu từng bộ | 3 tính năng nền tảng + "ổ cắm" gắn gói riêng của khách (điểm mở rộng, hiện **0**) |
 
 > 🗣 **Lời trình bày:** Đọc theo hàng: phương án S có cột "đầu tư trước" và "chi phí khách thứ N" nặng nhất, trong khi chưa có mô hình dòng tiền.
 
