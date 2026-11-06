@@ -1,12 +1,3 @@
-@@ id: cover-20
-@@ layout: cover
-@@ kicker: Bản ngắn · 20 trang
-# Bán ERP cho khách ngoài: cần gì để làm được
-
-Những khó khăn kỹ thuật phải giải trước khi bán — mỗi ý kèm **số liệu đo trên chính hệ thống đang chạy**.
-
-Ghi chú: Bản ngắn, khoảng 20 phút. Mục tiêu buổi này không phải bàn "có nên bán hay không", mà là "muốn bán được thì phải làm thêm những gì". Mọi con số đều đo trên hệ thống hiện tại; tài liệu đầy đủ có nguồn đo của từng con số.
-
 @@ id: cover-40
 @@ layout: cover
 @@ kicker: Bản vừa · 40 trang
