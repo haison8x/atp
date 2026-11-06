@@ -46,7 +46,7 @@ Chủ nhà đang ở bên trong khi mình sửa. Có bản vẽ ký trước, c�
 
 ---
 
-## 4. Năm điều kiện thuận lợi hôm nay — cả năm sẽ mất khi bán
+## 4. Sáu điều kiện thuận lợi hôm nay — cả sáu sẽ mất khi bán
 
 _Mở đầu_
 
@@ -57,8 +57,9 @@ _Mở đầu_
 | **Một** khách, ngồi cùng nhà, chịu được lỗi | **37%** lần thay đổi mã là sửa lỗi | Nhiều khách, ở xa, không chịu được lỗi |
 | Yêu cầu đổi liên tục, sửa ngay | **~1.920** quyết định trong ~2 tháng; **≥20** bị đảo | Mỗi lần đổi phải qua phân loại, kiểm thử, nghiệm thu |
 | Người viết mã cũng vận hành, **thấy mọi dữ liệu và máy chủ** | **3** môi trường do chính mình giữ | Không thấy dữ liệu khách, không giữ máy chủ, mã bị làm rối |
+| Mình **chấp nhận** sản phẩm chưa hoàn hảo: còn lỗi, còn rủi ro bảo mật, rủi ro mất dữ liệu | **0** chuyên gia bảo mật · **0** lần khôi phục thử từ bản sao lưu · **0/89** lần đổi cấu trúc DB có đường quay lại | Khách **không chấp nhận**: lỗi là khiếu nại, lộ dữ liệu là bị phạt theo luật, mất dữ liệu là đòi bồi thường |
 
-> 🗣 **Lời trình bày:** Hệ thống chạy tốt hôm nay không phải ngẫu nhiên — nó dựa vào năm điều kiện này. Khi bán, cả năm điều kiện đều biến mất cùng lúc, nên tốc độ và cách làm hiện tại không mang sang được nguyên vẹn.
+> 🗣 **Lời trình bày:** Hệ thống chạy tốt hôm nay không phải ngẫu nhiên — nó dựa vào sáu điều kiện này. Khi bán, cả sáu điều kiện đều biến mất cùng lúc, nên tốc độ và cách làm hiện tại không mang sang được nguyên vẹn. Điều kiện cuối là quan trọng nhất: rủi ro mà công ty mình đang chấp nhận cho chính mình, khách sẽ không chấp nhận — và khi xảy ra ở khách thì người chịu trách nhiệm là mình (Luật Bảo vệ dữ liệu cá nhân 91/2025, Phần 10).
 
 ---
 
